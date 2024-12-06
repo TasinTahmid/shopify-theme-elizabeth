@@ -5,9 +5,9 @@
   </div>
   <div class="my-4">
     {% if section.settings.button_url %}
-      {% assign shop_url = shop.secure_url %}
-    {% else %}
       {% assign shop_url = section.settings.button_url %}
+    {% else %}
+      {% assign shop_url = shop.secure_url %}
     {% endif %}
 
     <a
@@ -28,7 +28,7 @@
     {
       "type": "text",
       "id": "title",
-      "default": "404 sd",
+      "default": "404",
       "label": "404 Heading Title"
     },
     {
