@@ -11,7 +11,7 @@
   </a>
 {% endfor %}
 <h1>{{ product.title }}</h1>
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+<form action="/cart/add" method="POST" enctype="multipart/form-data" id="AddToCartForm">
   <select name="id" id="productSelect">
     {% for variant in product.variants %}
       {% if variant.available %}
