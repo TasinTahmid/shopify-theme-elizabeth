@@ -146,16 +146,16 @@
     <button type="button" x-on:click="searchBarOpen = false" class="absolute top-0 right-0 mr-5 mt-5 text-gray-500">
       {% render 'close-icon' %}
     </button>
-    <div class="h-40 flex justify-center items-center">
-      <form action="{{ routes.search_url }}" method="get" class="flex-auto">
-        <div class="relative text-gray-500 px-10 border">
+    <div class="h-40 w-full flex justify-center items-center">
+      <form action="{{ routes.search_url }}" method="get" class="w-full">
+        <div class="flex text-gray-500 pr-6 border">
           <input
             type="search"
             name="q"
             placeholder="Search"
-            class="w-full bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+            class="w-full bg-white h-10 px-5  rounded-full text-sm focus:outline-none"
           >
-          <button type="submit" class="absolute right-0 top-0 mt-2 mr-2 md:mr-20">
+          <button type="submit" class="">
             {% render 'search-icon' %}
           </button>
         </div>
