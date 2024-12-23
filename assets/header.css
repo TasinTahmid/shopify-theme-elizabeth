@@ -1,0 +1,116 @@
+.desktop-nav {
+	display: flex;
+	justify-content: space-between;
+	font-size: medium;
+	background-color: rgb(253, 253, 253);
+}
+
+.desktop-nav-links-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.desktop-nav-links {
+	margin-right: 10px;
+	color: #707070;
+	text-decoration: none;
+}
+.desktop-nav-links:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.dropdown-icon {
+	width: 1rem;
+	height: 1rem;
+	margin-left: 0.5rem;
+}
+
+.desktop-nav-dropdown {
+	border-radius: 5px;
+	position: absolute;
+	padding: 20px 0;
+	margin-top: 10px;
+	width: 400px;
+	background-color: white;
+	box-shadow: 0 1px 8px #0000001a;
+	left: 39%;
+}
+.desktop-nav-dropdown-links-wrapper {
+	padding: 0 20px;
+}
+.desktop-nav-dropdown-links {
+	border-radius: 5px;
+	display: flex;
+	padding: 18px;
+	text-decoration: none;
+	color: #707070;
+	text-decoration: none;
+	/* font-size: small; */
+}
+.desktop-nav-dropdown-links:hover {
+	background-color: rgb(245, 246, 247);
+	color: black;
+}
+
+.cart-and-user-menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mobile-side-menu-bar-wrapper {
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid gray;
+	box-shadow: 0 1px 8px #0000001a;
+}
+.mobile-side-menu-bar {
+	display: flex;
+	flex-direction: column;
+	background: white;
+	width: 100%;
+	/* margin: 10px; */
+	padding-left: 30px;
+	position: absolute;
+}
+.mobile-menu-icon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.mobile-nav-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.mobile-nav-items-wrapper {
+	width: 100%;
+	padding: 10px;
+}
+.mobile-nav-items {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	padding-left: 20px;
+}
+
+/* To hide Desktop Contents */
+@media (max-width: 768px) {
+	.desktop-nav-links-container,
+	.cart-and-user-menu {
+		display: none;
+	}
+}
+
+/* To hide Mobile Contents */
+@media (min-width: 768px) {
+	.mobile-menu-icon {
+		display: none;
+	}
+}
