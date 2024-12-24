@@ -13,6 +13,7 @@ body {
 	border: none;
 	background: none;
 	color: #707070;
+	padding: 0;
 }
 .icon-button:hover {
 	color: black;

@@ -2,12 +2,12 @@
 {% assign main_menu_linklist = linklists[section.settings.menu].links %}
 {% comment %} {{ shop.customer_accounts_enabled }} {% endcomment %}
 
-<div class="" x-data="{ mobileMenuOpen: false, searchBarOpen:false }">
-  <div class="">
+<div x-data="{ mobileMenuOpen: false, searchBarOpen:false }">
+  <div>
     <div class="desktop-nav">
       <!-- STORE NAME / STORE LOGO -->
-      <div class="">
-        <h1 class="">{{ section.settings.mobile_menu_title }}</h1>
+      <div>
+        <h1 class="desktop-store-title">{{ section.settings.mobile_menu_title }}</h1>
       </div>
 
       <!-- NAVIGATION MENU -->
@@ -28,7 +28,6 @@
               <div
                 x-show="{{ link_handle }}"
                 @click.away="{{ link_handle }} = false"
-                class=""
               >
                 <div class="desktop-nav-dropdown">
                   {% for sublink in link.links %}
@@ -54,7 +53,7 @@
         <button
           x-on:click="searchBarOpen = true"
           type="button"
-          class="icon-button"
+          class="icon-button desktop-nav-links"
         >
           {% render 'search-icon' %}
         </button>
@@ -85,9 +84,9 @@
           <!-- MOBILE MENU HEADER TITLE PLUS CLOSE BUTTON -->
           <div class="mobile-nav-header">
             <div>
-              <h1 class="text-lg text-gray-500">{{ section.settings.mobile_menu_title }}</h1>
+              <h1 class="mobile-store-title">{{ section.settings.mobile_menu_title }}</h1>
             </div>
-            <div class="-mr-2">
+            <div>
               <button @click="mobileMenuOpen = false" type="button" class="icon-button">
                 {% render 'close-icon' %}
               </button>
@@ -100,23 +99,23 @@
               {% for link in main_menu_linklist %}
                 {% assign link_handle = link.handle | replace: '-', '_' %}
                 {% if link.links != blank %}
-                  <div x-data="{ {{ link_handle }}:false }" class="relative">
+                  <div x-data="{ {{ link_handle }}:false }">
                     <button
                       @click="{{ link_handle }} = !{{ link_handle }}"
                       type="button"
-                      class="flex-icon-button"
+                      class="flex-icon-button mobile-nav-dropdown"
                     >
                       <div>{{ link.title }}</div>
                       {% render 'dropdown-icon' %}
                     </button>
 
-                    <div x-show="{{ link_handle }}" class="grid gap-y-7 py-3">
+                    <div x-show="{{ link_handle }}" class="mobile-sublinks-container">
                       {% for sublink in link.links %}
                         <a
                           href="{{ sublink.url }}"
-                          class="-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50"
+                          class="mobile-nav-links "
                         >
-                          <span class="ml-3 text-base font-medium text-gray-500">{{ sublink.title }}</span>
+                          <span>{{ sublink.title }}</span>
                         </a>
                       {% endfor %}
                     </div>
@@ -125,7 +124,7 @@
                 {% else %}
                   <a
                     href="{{ link.url }}"
-                    class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50"
+                    class="mobile-nav-links "
                   >
                     {{ link.title }}
                   </a>
@@ -137,20 +136,19 @@
       </div>
     </div>
   </div>
-  <div x-show="searchBarOpen" class="">
-    <button type="button" x-on:click="searchBarOpen = false" class="">
+  <div x-show="searchBarOpen">
+    <button type="button" x-on:click="searchBarOpen = false">
       {% render 'close-icon' %}
     </button>
-    <div class="">
-      <form action="{{ routes.search_url }}" method="get" class="">
-        <div class="">
+    <div>
+      <form action="{{ routes.search_url }}" method="get">
+        <div>
           <input
             type="search"
             name="q"
             placeholder="Search"
-            class=""
           >
-          <button type="submit" class="">
+          <button type="submit">
             {% render 'search-icon' %}
           </button>
         </div>
