@@ -136,8 +136,8 @@
       </div>
     </div>
   </div>
-  <div x-show="searchBarOpen">
-    <button type="button" x-on:click="searchBarOpen = false">
+  <div x-show="searchBarOpen" class="search-bar">
+    <button type="button" x-on:click="searchBarOpen = false" class="icon-button">
       {% render 'close-icon' %}
     </button>
     <div>
@@ -148,7 +148,7 @@
             name="q"
             placeholder="Search"
           >
-          <button type="submit">
+          <button type="submit" class="icon-button">
             {% render 'search-icon' %}
           </button>
         </div>
