@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
 {% assign main_menu_linklist = linklists[section.settings.menu].links %}
 {% comment %} {{ shop.customer_accounts_enabled }} {% endcomment %}
 
@@ -65,6 +64,28 @@
           <a href="{{ routes.account_login_url }}" class="desktop-nav-links">Login</a>
           <a href="{{ routes.account_register_url }}" class="desktop-nav-links">Register</a>
         {% endif %}
+      </div>
+
+      <div x-show="searchBarOpen" class="search-bar-wrapper">
+        <div class="search-bar">
+          <button type="button" x-on:click="searchBarOpen = false" class="icon-button close-icon">
+            {% render 'close-icon' %}
+          </button>
+
+          <form class="search-form" action="{{ routes.search_url }}" method="get">
+            <div class="search-box">
+              <input
+                type="search"
+                name="q"
+                placeholder="Search"
+                class="search-input"
+              >
+              <button type="submit" class="icon-button search-icon">
+                {% render 'search-icon' %}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <!-- Moblie MENU -->
@@ -134,25 +155,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div x-show="searchBarOpen" class="search-bar">
-    <button type="button" x-on:click="searchBarOpen = false" class="icon-button">
-      {% render 'close-icon' %}
-    </button>
-    <div>
-      <form action="{{ routes.search_url }}" method="get">
-        <div>
-          <input
-            type="search"
-            name="q"
-            placeholder="Search"
-          >
-          <button type="submit" class="icon-button">
-            {% render 'search-icon' %}
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 </div>
