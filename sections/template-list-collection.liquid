@@ -1,14 +1,14 @@
-<div class="flex flex-col item-center my-8">
-  <h1 class="text-3xl font-medium">{{ section.settings.title }}</h1>
+<div class="list-collection-section">
+  <h1 class="list-collection-heading">{{ section.settings.title }}</h1>
 
   <div class="max-w-6xl mx-auto my-3">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div class="collection-grid">
       {% for collection in collections %}
         {% if collection.all_products_count > 0 %}
-          <div class="w-full py-6 px-3">
-            <div class="border bg-white overflow-hidden">
-              <a href="{{ collection.url }}">
-                <div class="h-80 overflow-hidden">
+          <div class="collection-card-wrapper">
+            <div class="collection-card">
+              <a href="{{ collection.url }}" class="collection-link">
+                <div class="collection-card-image-wrapper">
                   {% if collection.featured_image != blank %}
                     {% assign collection_image = collection.featured_image %}
                   {% else %}
@@ -16,7 +16,7 @@
                   {% endif %}
                   {% if collection_image %}
                     <img
-                      class="w-full h-full object-cover transition duration-1000 ease-in-out trasform hover:scale-105"
+                      class="collection-card-image"
                       src="{{ collection_image |  image_url }}"
                       alt="{{ collection.title | escape }}"
                       width="240"
@@ -29,8 +29,8 @@
                     }}
                   {% endif %}
                 </div>
-                <div class="p-4 bg-gray-100 ">
-                  <h1 class="text-xl">{{ collection.title }}</h1>
+                <div class="collection-details ">
+                  <h1 class="collection-title">{{ collection.title }}</h1>
                 </div>
               </a>
             </div>
@@ -48,7 +48,7 @@
     {
       "type": "text",
       "id": "title",
-      "default": "collections",
+      "default": "All collections",
       "label": "Title"
     }
   ]
