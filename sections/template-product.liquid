@@ -103,7 +103,7 @@
                           {% endfor %}
                         </select>
                       </div>
-                      <script type="application/json">
+                      <script type="application/json" id="all-variants">
                         {{ product.variants |  json }}
                       </script>
                     {% endfor %}
@@ -111,29 +111,28 @@
                 {% endunless %}
               </div>
             {% when 'quantity' %}
-              <div class="detail-wrapper">
+              <div class="detail-wrapper input-wrapper">
                 <label for="Quantity-{{ section.id }}">Quantity</label>
-                <div class="input-wrapper">
-                  <input
-                    class="quantity-input-field"
-                    type="number"
-                    name="quantity"
-                    id="Quantity-{{ section.id }}"
-                    value="1"
-                    min="1"
-                  >
-                </div>
+
+                <input
+                  class="quantity-input-field"
+                  type="number"
+                  name="quantity"
+                  id="Quantity-{{ section.id }}"
+                  value="1"
+                  min="1"
+                >
               </div>
             {% when 'description' %}
               <div class="detail-wrapper">
-                <p class="product-description">{{ product.description }}</p>
+                <div class="product-description">{{ product.description }}</div>
               </div>
             {% when 'checkout_buttons' %}
               <div class="detail-wrapper">
                 <button
                   type="submit"
                   name="add"
-                  class="add-to-cart-button"
+                  class="pdp-add-to-cart-button"
                   {% if selected_variant.available == false %}
                     disabled
                   {% endif %}
@@ -178,7 +177,7 @@
 
     getVariantJSON() {
       this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
-      // console.log('Variant Data:;:', this.variantData);
+      console.log('Variant Data:;:', this.variantData);
       return this.variantData;
     }
 

@@ -1,11 +1,12 @@
 {
-  "sections": {
-    "featured-collection": {
-      "type": "featured-collection",
-      "settings": {
-        "featured_collection": "all"
-      }
-    }
-  },
-  "order": ["featured-collection"]
+	"sections": {
+		"collection-hero-section": { "type": "collection-hero-section" },
+		"featured-collection": {
+			"type": "featured-collection",
+			"settings": {
+				"featured_collection": "all"
+			}
+		}
+	},
+	"order": ["collection-hero-section", "featured-collection"]
 }

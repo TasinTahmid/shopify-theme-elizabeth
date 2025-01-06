@@ -198,7 +198,8 @@
 
 /* To hide Mobile Contents */
 @media (min-width: 768px) {
-	.mobile-menu-icon {
+	.mobile-menu-icon,
+	.mobile-side-menu-bar {
 		display: none;
 	}
 }
