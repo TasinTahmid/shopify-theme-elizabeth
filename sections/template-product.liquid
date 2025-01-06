@@ -26,22 +26,22 @@
   }
 </style>
 
-<div class="max-w-6xl mx-auto my-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-    <div class="product--medias">
-      <div class="hidden md:block">
+<div class="product-section-wrapper">
+  <div class="product-section">
+    <div class="product--medias ">
+      <div class="product-media">
         {% for media in product.media %}
-          <div class="h-100 overflow-hidden p-2">
+          <div class="desktop-product-media-wrapper">
             {% render 'product-media', media: media %}
           </div>
         {% endfor %}
       </div>
-      <div class="md:hidden">
-        <div class="swiper h-94">
+      <div class="mobile-media-swipper">
+        <div class="swiper swiper-custom-property">
           <div class="swiper-wrapper">
             {% for media in product.media %}
               <div class="swiper-slide">
-                <div class="h-80 overflow-hidden p-2">
+                <div class="mobile-product-media-wrapper">
                   {% render 'product-media', media: media %}
                 </div>
               </div>
@@ -54,42 +54,42 @@
         </div>
       </div>
     </div>
-    <div class="product--details sticky top-5 p-2">
+    <div class="product--details product-details">
       {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'vendor' %}
-              <div class="my-3">
-                <span class="text-sx text-gray-500">{{ product.vendor }}</span>
+              <div class="detail-wrapper">
+                <span class="vendor">{{ product.vendor }}</span>
               </div>
             {% when 'title' %}
-              <div class="my-3">
-                <h1 class="text-3xl text-gray-900">{{ product.title }}</h1>
+              <div class="detail-wrapper">
+                <h1 class="pdp-product-title">{{ product.title }}</h1>
               </div>
             {% when 'price' %}
-              <div class="my-3 " id="price-{{section.id}}">
-                <span class="text-base text-gray-500 line-through">
+              <div class="detail-wrapper" id="price-{{section.id}}">
+                <span class="compare-at-price">
                   {{- selected_variant.compare_at_price | money -}}
                 </span>
-                <span class="text-lg text-gray-900">{{ selected_variant.price | money }}</span>
+                <span class="selected-variant-price">{{ selected_variant.price | money }}</span>
 
                 {% if selected_variant.price < selected_variant.compare_at_price %}
-                  <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4"> Sale </span>
+                  <span class="sale-badge"> Sale </span>
                 {% endif %}
               </div>
             {% when 'variant_selector' %}
-              <div class="my-3">
+              <div class="detail-wrapper">
                 {% unless product.has_only_default_variant %}
                   <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                     {% for option in product.options_with_values %}
                       <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-                      <div class="my-2">
+                      <div class="dropdown-wrapper">
                         <select
                           name="options[{{ option.name |  escape }}]"
                           id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                          class="w-full border py-3 px-2"
+                          class="dropdown"
                         >
                           {% for value in option.values %}
                             <option
@@ -111,11 +111,11 @@
                 {% endunless %}
               </div>
             {% when 'quantity' %}
-              <div class="my-3">
+              <div class="detail-wrapper">
                 <label for="Quantity-{{ section.id }}">Quantity</label>
-                <div class="my-2">
+                <div class="input-wrapper">
                   <input
-                    class="w-full border px-3 py-3"
+                    class="quantity-input-field"
                     type="number"
                     name="quantity"
                     id="Quantity-{{ section.id }}"
@@ -125,15 +125,15 @@
                 </div>
               </div>
             {% when 'description' %}
-              <div class="my-3">
-                <p class="text-gray-700">{{ product.description }}</p>
+              <div class="detail-wrapper">
+                <p class="product-description">{{ product.description }}</p>
               </div>
             {% when 'checkout_buttons' %}
-              <div class="my-3">
+              <div class="detail-wrapper">
                 <button
                   type="submit"
                   name="add"
-                  class="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
+                  class="add-to-cart-button"
                   {% if selected_variant.available == false %}
                     disabled
                   {% endif %}
