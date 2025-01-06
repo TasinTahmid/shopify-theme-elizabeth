@@ -188,6 +188,37 @@ thead {
 	cursor: pointer;
 }
 
+.cart-heading-wrapper-no-product {
+	height: 280px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cart-heading-no-product {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.cart-heading-no-product h1 {
+	font-weight: 500;
+}
+.continue-shopping-button-no-product {
+	border: 1px solid #4b5563;
+	background-color: #4b5563;
+	text-decoration: none;
+	color: white;
+	padding: 12px 32px;
+	margin: 0;
+	border-radius: 2px;
+	font-size: 16px;
+	font-weight: 500;
+	transition: background-color 0.2s, color 0.2s;
+}
+
 @media (max-width: 768px) {
 	.notes-and-checkout {
 		flex-direction: column;
