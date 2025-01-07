@@ -5,9 +5,9 @@
 }
 
 .collection-link {
+	width: 100%;
 	position: absolute;
 	top: 387px;
-	left: 43%;
 	color: white;
 	font-size: xx-large;
 }
@@ -42,7 +42,6 @@
 	}
 	.collection-link {
 		top: 155px;
-		left: 31%;
 	}
 }
 
