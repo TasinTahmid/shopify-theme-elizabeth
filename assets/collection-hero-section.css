@@ -1,0 +1,29 @@
+.collections-hero-section {
+	width: 100%;
+	height: 600px;
+	margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+	.collections-hero-section {
+		height: 400px;
+	}
+}
+
+.collection-media-swipper {
+	height: 100%;
+}
+
+.swiper-custom-property {
+	height: 100%;
+}
+
+.collection-image-wrapper {
+	overflow: hidden;
+}
+.collection-swiper-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	/* transition: transform 1s ease-in-out; */
+}
