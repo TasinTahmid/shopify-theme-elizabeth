@@ -23,10 +23,7 @@
                       height="240"
                     >
                   {% else %}
-                    {{
-                      'collection-1'
-                      | placeholder_svg_tag: 'w-full h-full object-cover border transition duration-1000 ease-in-out trasform hover:scale-105'
-                    }}
+                    {{ 'collection-1' | placeholder_svg_tag: '' }}
                   {% endif %}
                 </div>
                 <div class="collection-details ">
