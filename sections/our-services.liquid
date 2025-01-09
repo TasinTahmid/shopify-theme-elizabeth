@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="{{ 'our-services.css' | asset_url }}">
+
+<div class="our-services">
+  <div class="section-header">
+    <h3 class="text-over-section-title">Our Services</h3>
+    <h1 class="section-title">What We Do</h1>
+    <div class="section-subtitle">
+      We deliver digital solutions. Simple! No matter what your business needs, we can help. Partnering with your
+      business and outsourcing development needs means we can design, develop and implement the right solutions for you,
+      all while enhancing your customers’ experiences. We can offer custom web design and development, complex A/B test
+      builds and so much more.
+    </div>
+    <span class="divider-line"></span>
+  </div>
+
+  <div class="section-content">
+    <div class="service-grid">
+      {% for block in section.blocks %}
+        <script>
+          const section_blocks = {{ section.blocks | json }};
+          console.log('section blocks::::', section_blocks);
+        </script>
+        {% if block.type == 'service'
+          and block.settings.service_image != blank
+          and block.settings.service_title != blank
+          and block.settings.service_description != blank
+        %}
+          <div class="service">
+            <div class="service-image">
+              <img src="{{ block.settings.service_image | image_url }}" alt="Service Image" width="60px" height="60px">
+            </div>
+            <div class="service-description">
+              <h2>{{ block.settings.service_title }}</h2>
+              <span class="divider-line-on-left"></span>
+              <p>{{ block.settings.service_description }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="service-slide">
+      <div class="swiper swiper-custom-property">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+              {% if block.type == 'service'
+                and block.settings.service_image != blank
+                and block.settings.service_title != blank
+                and block.settings.service_description != blank
+              %}
+                <div class="service">
+                  <div class="service-image">
+                    <img
+                      src="{{ block.settings.service_image | image_url }}"
+                      alt="Service Image"
+                      width="60px"
+                      height="60px"
+                    >
+                  </div>
+                  <div class="service-description">
+                    <h2>{{ block.settings.service_title }}</h2>
+                    <span class="divider-line-on-left"></span>
+                    <p>{{ block.settings.service_description }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-prev pagination-arrows"></div>
+        <div class="swiper-button-next pagination-arrows"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const swiper = new Swiper('.swiper', {
+    direction: 'horizontal',
+
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-button-next',
+    },
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Our Services",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "service_image",
+          "label": "Service Image"
+        },
+        {
+          "type": "text",
+          "id": "service_title",
+          "label": "Service Title",
+          "default": "A/B Testing Development"
+        },
+        {
+          "type": "textarea",
+          "id": "service_description",
+          "label": "Service Description",
+          "default": "Our solutions engineers are certified across a variety of testing platforms, and are well-versed in delivering A/B testing and personalisation campaigns for businesses. They’re happiest when they’re engrossed in Optimizely, Adobe Target, Convert, Monetate, VWO, AB Tasty and Kameleoon."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Services"
+    }
+  ]
+}
+{% endschema %}

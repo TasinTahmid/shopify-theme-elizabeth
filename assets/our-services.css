@@ -1,0 +1,146 @@
+/* Swipper CSS */
+.swiper-button-prev,
+.swiper-button-next {
+	color: rgb(92, 68, 68);
+	background-color: rgba(166, 162, 156, 0.725);
+	font-weight: bolder;
+	padding: 9px 0;
+	height: 10px;
+	border-radius: 50%;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+	font-size: 12px;
+}
+.swiper-pagination {
+	color: black;
+	bottom: 16px !important;
+}
+.swiper-pagination-bullet {
+	border-radius: 0;
+	border: 1px solid rgb(213, 210, 210);
+	height: 10px;
+	width: 10px;
+}
+.swiper-pagination-bullet-active {
+	background: #fa4b00 !important;
+}
+.product--details {
+	height: fit-content;
+}
+
+.our-services {
+	background: linear-gradient(245deg, #531800 0%, #1d1d1b 49%);
+	color: white;
+	font-weight: 400;
+	padding: 32px 32px 64px 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 100px;
+	line-height: 2rem;
+}
+
+.section-header {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 24px;
+	align-items: center;
+}
+.text-over-section-title {
+	font-weight: 600;
+	font-size: 20px;
+	color: #fa4b00;
+}
+.section-title {
+	font-weight: 500;
+	font-size: 40px;
+}
+.section-subtitle {
+	font-weight: 400;
+	font-size: 20px;
+	text-align: center;
+	margin-bottom: 8px;
+}
+.divider-line {
+	display: block;
+	width: 47px;
+	border-bottom: 2px solid #fa4b00;
+	/* margin-top: 35px; */
+	margin: 0 auto;
+}
+.section-content {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.service-grid {
+	display: grid;
+	gap: 40px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.service {
+	display: flex;
+	gap: 16px;
+	justify-content: space-between;
+	align-items: start;
+}
+.service-image {
+	width: 60px;
+	height: 60px;
+}
+.service-description h2 {
+	margin: 0;
+	font-weight: 600;
+	margin-bottom: 16px;
+}
+.divider-line-on-left {
+	display: block;
+	width: 47px;
+	border-bottom: 2px solid #fa4b00;
+}
+.service-description p {
+	font-size: 17px;
+	line-height: 1.8rem;
+}
+
+@media (max-width: 1100px) {
+	.service-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.service {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.service-description h2 {
+		text-align: center;
+	}
+
+	.service-description p {
+		text-align: center;
+	}
+
+	.divider-line-on-left {
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 768px) {
+	.service-grid {
+		display: none;
+	}
+	.service {
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+@media (min-width: 768px) {
+	.service-slide {
+		display: none;
+	}
+}
