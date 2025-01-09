@@ -2,6 +2,13 @@
 	width: 100%;
 	height: 600px;
 	margin-bottom: 48px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	/* background: linear-gradient(245deg, #531800 0%, #1d1d1b 49%); */
 }
 
 .image-wrapper {
@@ -27,7 +34,7 @@
 	gap: 32px;
 	width: 100%;
 	position: relative;
-	bottom: 465px;
+	/* bottom: 465px; */
 }
 .message-wrapper {
 	display: flex;
@@ -53,12 +60,12 @@
 .link-buttons {
 	width: 100%;
 	position: relative;
-	bottom: 130px;
+	/* bottom: 130px; */
 	color: white;
 	font-size: xx-large;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 8px;
 	align-items: center;
 }
 
@@ -109,7 +116,7 @@
 		font-size: medium;
 	}
 	.banner-messages {
-		bottom: 375px;
+		/* bottom: 375px; */
 	}
 	.message-wrapper {
 		gap: 20px;

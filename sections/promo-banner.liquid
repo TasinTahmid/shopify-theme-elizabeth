@@ -1,47 +1,40 @@
 <link rel="stylesheet" href="{{ 'promo-banner.css' | asset_url }}">
 
-<div class="promo-banner">
-  <div class="image-wrapper">
-    {% assign selected_image = section.settings.banner_image %}
-
-    {% if selected_image %}
-      <img
-        class="banner-image"
-        src="{{ selected_image |  image_url }}"
-        alt="Promo Image"
-        width="100%"
-        height="100%"
-      >
-
+<div
+  class="promo-banner"
+  style="
+    background-image: url(
+    {% if section.settings.banner_image != blank %}
+       {{ section.settings.banner_image | image_url  }}
     {% else %}
-      {{ 'collection-1' | placeholder_svg_tag: 'placeholder-image' }}
+      'https://i.imghippo.com/files/MNnr3617mk.jpg'
     {% endif %}
+      );
+  "
+>
+  <div>&nbsp;</div>
 
-    <div class="link-buttons">
-      <div class="link-wrapper">
-        {% for block in section.blocks %}
-          {% if block.type == 'button'
-            and block.settings.button_label != blank
-            and block.settings.button_url != blank
-          %}
-            <a
-              href="{{ block.settings.button_url }}"
-              class="links"
-            >
-              {{ block.settings.button_label }}
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-      <div class="section-text-under-button">{{ section.settings.section_text_under_button }}</div>
+  <div class="banner-messages">
+    <div class="message-wrapper">
+      <div class="banner-title">{{ section.settings.banner_title }}</div>
+      <div class="banner-subtitle">{{ section.settings.banner_subtitle }}</div>
     </div>
+  </div>
 
-    <div class="banner-messages">
-      <div class="message-wrapper">
-        <div class="banner-title">{{ section.settings.banner_title }}</div>
-        <div class="banner-subtitle">{{ section.settings.banner_subtitle }}</div>
-      </div>
+  <div class="link-buttons">
+    <div class="link-wrapper">
+      {% for block in section.blocks %}
+        {% if block.type == 'button' and block.settings.button_label != blank and block.settings.button_url != blank %}
+          <a
+            href="{{ block.settings.button_url }}"
+            class="links"
+          >
+            {{ block.settings.button_label }}
+          </a>
+        {% endif %}
+      {% endfor %}
     </div>
+    <div class="section-text-under-button">{{ section.settings.section_text_under_button }}</div>
   </div>
 </div>
 
