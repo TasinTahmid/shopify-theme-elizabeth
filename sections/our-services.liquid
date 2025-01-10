@@ -5,12 +5,9 @@
 <div class="our-services">
   <div class="section-header">
     <h3 class="text-over-section-title">Our Services</h3>
-    <h1 class="section-title">What We Do</h1>
+    <h1 class="section-title">{{ section.settings.section_title }}</h1>
     <div class="section-subtitle">
-      We deliver digital solutions. Simple! No matter what your business needs, we can help. Partnering with your
-      business and outsourcing development needs means we can design, develop and implement the right solutions for you,
-      all while enhancing your customers’ experiences. We can offer custom web design and development, complex A/B test
-      builds and so much more.
+      {{ section.settings.section_subtitle }}
     </div>
     <span class="divider-line"></span>
   </div>
@@ -100,6 +97,11 @@
       "type": "text",
       "id": "section_title",
       "label": "Section Title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle"
     }
   ],
   "blocks": [

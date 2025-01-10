@@ -54,10 +54,12 @@
 	font-weight: 600;
 	font-size: 20px;
 	color: #fa4b00;
+	text-transform: uppercase;
 }
 .section-title {
 	font-weight: 500;
 	font-size: 40px;
+	text-transform: uppercase;
 }
 .section-subtitle {
 	font-weight: 400;
