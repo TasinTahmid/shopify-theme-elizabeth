@@ -15,18 +15,20 @@
   <div class="section-content">
     <div class="service-grid">
       {% for block in section.blocks %}
-        <script>
-          const section_blocks = {{ section.blocks | json }};
-          console.log('section blocks::::', section_blocks);
-        </script>
-        {% if block.type == 'service'
-          and block.settings.service_image != blank
-          and block.settings.service_title != blank
-          and block.settings.service_description != blank
-        %}
+        {% if block.type == 'service' %}
           <div class="service">
             <div class="service-image">
-              <img src="{{ block.settings.service_image | image_url }}" alt="Service Image" width="60px" height="60px">
+              {% if block.settings.service_image != blank %}
+                {% assign service_image = block.settings.service_image | image_url %}
+              {% else %}
+                {% assign service_image = 'service-placeholder-image.png' | asset_url %}
+              {% endif %}
+              <img
+                src="{{ service_image }}"
+                alt="Service Image"
+                width="60px"
+                height="60px"
+              >
             </div>
             <div class="service-description">
               <h2>{{ block.settings.service_title }}</h2>
@@ -39,19 +41,20 @@
     </div>
 
     <div class="service-slide">
-      <div class="swiper swiper-custom-property">
+      <div class="swiper swiper-service-slider swiper-custom-property">
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
             <div class="swiper-slide">
-              {% if block.type == 'service'
-                and block.settings.service_image != blank
-                and block.settings.service_title != blank
-                and block.settings.service_description != blank
-              %}
+              {% if block.type == 'service' %}
                 <div class="service">
                   <div class="service-image">
+                    {% if block.settings.service_image != blank %}
+                      {% assign service_image = block.settings.service_image | image_url %}
+                    {% else %}
+                      {% assign service_image = 'service-placeholder-image.png' | asset_url %}
+                    {% endif %}
                     <img
-                      src="{{ block.settings.service_image | image_url }}"
+                      src="{{ service_image }}"
                       alt="Service Image"
                       width="60px"
                       height="60px"
@@ -67,26 +70,30 @@
             </div>
           {% endfor %}
         </div>
-        <div class="swiper-button-prev pagination-arrows"></div>
-        <div class="swiper-button-next pagination-arrows"></div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev service-pagination-arrows"></div>
+        <div class="swiper-button-next service-pagination-arrows"></div>
+        <div class="swiper-pagination service-swiper-pagination"></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  const swiper = new Swiper('.swiper', {
-    direction: 'horizontal',
+  (function () {
+    const swiper = new Swiper('.swiper-service-slider', {
+      direction: 'horizontal',
 
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    navigation: {
-      prevEl: '.swiper-button-prev',
-      nextEl: '.swiper-button-next',
-    },
-  });
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+      },
+    });
+  })();
 </script>
 
 {% schema %}

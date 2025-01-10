@@ -6,8 +6,6 @@
 
 .collection-link {
 	width: 100%;
-	position: absolute;
-	top: 387px;
 	color: white;
 	font-size: xx-large;
 }
@@ -40,9 +38,6 @@
 		position: absolute;
 		top: 200px;
 	}
-	.collection-link {
-		top: 155px;
-	}
 }
 
 .collection-media-swipper {
@@ -53,8 +48,17 @@
 	height: 100%;
 }
 
-.collection-image-wrapper {
+.slider-content {
+	height: 100%;
+	width: 100%;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .collection-swiper-image {
 	width: 100%;
