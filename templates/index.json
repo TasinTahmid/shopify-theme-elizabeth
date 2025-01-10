@@ -6,7 +6,14 @@
 			"settings": {
 				"featured_collection": "all"
 			}
-		}
+		},
+		"promo-banner": { "type": "promo-banner" },
+		"our-services": { "type": "our-services" }
 	},
-	"order": ["collection-hero-section", "featured-collection"]
+	"order": [
+		"collection-hero-section",
+		"featured-collection",
+		"promo-banner",
+		"our-services"
+	]
 }

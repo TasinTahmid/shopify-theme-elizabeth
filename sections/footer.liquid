@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
+
+<div class="footer">
+  <div class="footer-items-wrapper">
+    <div class="social-media-links">
+      <a href="#">
+        <img
+          src="{{ 'fb.png' |  asset_url }}"
+          alt="fb"
+          width="34px"
+          height="34px"
+        >
+      </a>
+      <a href="#"
+        ><img
+          src="{{ 'linkedIn.png' | asset_url }}"
+          alt="linkedIn"
+          width="34px"
+          height="34px"
+      ></a>
+      <a href="#"
+        ><img
+          src="{{ 'tw.png' | asset_url }}"
+          alt="twitter"
+          width="34px"
+          height="34px"
+      ></a>
+      <a href="#"
+        ><img
+          src="{{ 'instagram.png' | asset_url }}"
+          alt="instagram"
+          width="34px"
+          height="34px"
+      ></a>
+    </div>
+    <div class="iso-certification-badge">
+      <img
+        src="{{ 'iso-badge.webp' | asset_url }}"
+        alt="ISO Badge"
+        height="68px"
+        width="223px"
+      >
+    </div>
+    <div class="about-company">
+      <ul class="other-pages">
+        <li><a href="/blogs/news">Blogs</a></li>
+        <li><a href="/pages/about-us">About Us</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Career</a></li>
+      </ul>
+      <div class="company-address">
+        Echologyx Ltd. UK, Company registration number 11338720 <br>
+        EchoLogyx Inc. Florida, USA with EIN 92-0677155. <br>
+        © All rights reserved
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Navigational Bar",
+  "settings": []
+}
+{% endschema %}
