@@ -3,19 +3,16 @@
 	padding: 0 32px 54px 32px;
 }
 
-.service-swiper-button-prev,
-.service-swiper-button-next {
-	color: rgb(92, 68, 68);
-	background-color: rgba(166, 162, 156, 0.725);
+.service-pagination-arrows {
 	font-weight: bolder;
+	font-size: 20px;
 	padding: 9px 0;
 	height: 10px;
 	width: 30px;
 	border-radius: 50%;
 }
-.service-swiper-button-prev::after,
-.service-swiper-button-next::after {
-	font-size: 12px;
+.service-pagination-arrows::after {
+	font-size: 18px;
 }
 .service-swiper-pagination {
 	color: black;
@@ -146,6 +143,12 @@
 @media (max-width: 768px) {
 	.service-grid {
 		display: none;
+	}
+	.section-title {
+		font-size: x-large;
+	}
+	.section-subtitle {
+		font-size: medium;
 	}
 	.service {
 		width: 80%;
