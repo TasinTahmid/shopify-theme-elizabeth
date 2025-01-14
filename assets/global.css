@@ -4,6 +4,16 @@ body {
 	padding: 0;
 }
 
+.page-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.main-content {
+	flex: 1;
+}
+
 .size-6 {
 	width: 1.5rem;
 	height: 1.5rem;

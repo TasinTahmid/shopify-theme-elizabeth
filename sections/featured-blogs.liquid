@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="{{ 'featured-blogs.css' | asset_url }}">
+
+<div class="featured-blog">
+  {% for block in section.blocks %}
+    <div class="large-article-card">
+      {% comment %} {{ block.settings.featured_article.user.image }} {% endcomment %}
+      <div class="article-image-container">
+        <img
+          src="{{ block.settings.featured_article.image | image_url }}"
+          class="article-image"
+          alt="Article Image"
+          height="100%"
+          width="100%"
+        >
+      </div>
+      <div class="article-details-container">
+        <div class="article-details">
+          <h4 class="article-list-category">{{ section.settings.section_title }}</h4>
+
+          <h2 class="article-title">
+            {% if block.settings.article_title != blank %}
+              {{ block.settings.article_title }}
+            {% else %}
+              {{ block.settings.featured_article.title }}
+            {% endif %}
+          </h2>
+
+          <div class="author-info">
+            <img
+              class="author-image"
+              src="{{ block.settings.featured_article.user.image | image_url }}"
+              alt="Author Image"
+              height="60px"
+              width="60px"
+            >
+
+            <p>
+              by <span class="author-name">{{ block.settings.featured_article.author }}</span>
+            </p>
+          </div>
+
+          <div class="aritcle-excerpt">{{ block.settings.featured_article.excerpt }}</div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Featured Blogs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_article",
+      "name": "Featured Article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "featured_article",
+          "label": "Featured Article"
+        },
+        {
+          "type": "text",
+          "id": "article_title",
+          "label": "Article Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Image"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Article Excerpt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Blogs"
+    }
+  ]
+}
+{% endschema %}

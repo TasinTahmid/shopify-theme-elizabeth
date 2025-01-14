@@ -43,6 +43,10 @@
 	width: 145px;
 }
 
+.social-media-links a {
+	position: relative;
+}
+
 .social-media-links img:hover {
 	height: 38px;
 	width: 38px;
