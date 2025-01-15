@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="{{ 'small-card-article-collection.css' | asset_url }}">
+
+<div class="small-card-article-collection-container">
+  <div class="small-card-article-collection">
+    <div class="sc-articles-header">
+      <h1 class="article-list-category">{{ section.settings.section_title }}</h1>
+    </div>
+    <div class="sc-article-slider">
+      <div class="swiper swiper-small-article-card ">
+        <div class="swiper-wrapper small-swiper-custom-property">
+          {% for block in section.blocks %}
+            <div class="swiper-slide ">
+              <div class="small-article-card">
+                <div class="small-article-image-container">
+                  <img
+                    src="{{ block.settings.small_card_article.image | image_url }}"
+                    class="small-article-image"
+                    alt="Article Image"
+                    height="100%"
+                    width="100%"
+                  >
+                </div>
+                <div class="small-article-details-container">
+                  <div class="small-article-details">
+                    <h2 class="small-article-title">
+                      {% if block.settings.article_title != blank %}
+                        {{ block.settings.article_title }}
+                      {% else %}
+                        {{ block.settings.small_card_article.title }}
+                      {% endif %}
+                    </h2>
+
+                    <div class="small-aritcle-excerpt">
+                      {% if block.settings.article_excerpt != blank %}
+                        {% assign article_excerpt = block.settings.article_excerpt %}
+                      {% else %}
+                        {% assign article_excerpt = block.settings.small_card_article.excerpt %}
+                      {% endif -%}
+                      {{ article_excerpt }}
+                    </div>
+
+                    <a class="small-article-link-button" href="{{ block.settings.featured_article.url }}">
+                      {{- block.settings.button_label -}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const swiper = new Swiper('.swiper-small-article-card', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "SC Article Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "small_card_article",
+      "name": "Small Card Article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "small_card_article",
+          "label": "Small Card Article"
+        },
+        {
+          "type": "text",
+          "id": "article_title",
+          "label": "Article Title"
+        },
+        {
+          "type": "textarea",
+          "id": "article_excerpt",
+          "label": "Article Excerpt"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Read Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Small Card Articles"
+    }
+  ]
+}
+{% endschema %}

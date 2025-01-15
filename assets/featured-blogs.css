@@ -1,13 +1,19 @@
+.featured-blog-container {
+	background-color: #f9f9f6;
+}
 .featured-blog {
-	width: 100%;
 	height: 662px;
 	padding: 48px 0;
+	margin: 0 auto;
+
+	width: 1320px;
 }
 
 .large-article-card {
-	height: 660px;
-	width: 1320px;
-	margin: 0 auto;
+	height: 100%;
+	width: 100%;
+	border: 1px solid #f1eee4;
+	background-color: white;
 	display: flex;
 }
 
@@ -25,6 +31,9 @@
 }
 .article-details {
 	padding: 64px 48px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
 }
 .article-list-category {
 	text-transform: uppercase;
@@ -58,4 +67,46 @@
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 400;
+}
+.aritcle-excerpt p {
+	margin: 0;
+}
+
+.article-link-button {
+	margin: 0;
+	padding: 20px 50px;
+	border-radius: 100vh;
+	background-color: #01200f;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	font-size: 14px;
+	width: fit-content;
+}
+
+.pagination-arrows-container {
+	position: relative;
+	margin-top: 32px;
+	display: flex;
+	gap: 20px;
+	justify-content: end;
+}
+.large-article-pagination-arrows {
+	position: relative;
+	width: fit-content;
+	height: 50px;
+	z-index: 10;
+	background: #e7e7da;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+}
+.large-article-pagination-arrows:hover {
+	cursor: pointer;
+	background: #01200f;
+}
+.large-article-pagination-arrows:hover svg path {
+	stroke: white;
 }

@@ -1,0 +1,69 @@
+.small-card-article-collection-container {
+	background-color: #f9f9f6;
+	overflow: visible;
+}
+.small-card-article-collection {
+	padding: 48px 0;
+	width: 1322px;
+	margin: 0 auto;
+	overflow: visible;
+}
+
+.sc-article-slider {
+	/* margin-left: 30px; */
+	overflow: visible;
+}
+.small-swiper-custom-property {
+	height: 686px;
+	width: 406px;
+	overflow: visible;
+}
+
+.small-article-card {
+	height: 686px;
+	width: 406px;
+	border: 1px solid #f1eee4;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+}
+.small-article-image-container {
+	height: 50%;
+}
+.small-article-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+.small-article-details-container {
+	height: 50%;
+}
+.small-article-details {
+	padding: 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.small-article-title {
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Serif";
+	font-size: 22px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%;
+}
+.small-aritcle-excerpt {
+	color: #747474;
+	/* font-family: Figtree; */
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+}
+.small-aritcle-excerpt p {
+	margin: 0;
+}
+.small-article-link-button {
+	color: #747474;
+}
