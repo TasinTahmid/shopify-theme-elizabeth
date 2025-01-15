@@ -1,22 +1,66 @@
 .small-card-article-collection-container {
 	background-color: #f9f9f6;
-	overflow: visible;
 }
 .small-card-article-collection {
 	padding: 48px 0;
 	width: 1322px;
 	margin: 0 auto;
-	overflow: visible;
+	display: flex;
+	flex-direction: column;
+	gap: 42px;
+}
+.sc-articles-header {
+	display: flex;
+	justify-content: space-between;
+}
+.sc-articles-section-title {
+	margin-top: 0;
+	font-family: "Roboto Serif";
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%;
+}
+.all-articles-link {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+}
+.all-articles-arrow-svg {
+	position: relative;
+	width: fit-content;
+	height: 50px;
+	z-index: 10;
+	background: #e7e7da;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+}
+.all-articles-arrow-svg:hover {
+	cursor: pointer;
+	background: #01200f;
+}
+.all-articles-arrow-svg:hover svg path {
+	stroke: white;
 }
 
 .sc-article-slider {
 	/* margin-left: 30px; */
+}
+
+.swiper-small-article-card {
+	width: 100%;
 	overflow: visible;
+}
+.swiper-small-article-card::-webkit-scrollbar {
+	display: none; /* For Chrome, Safari, and Edge */
 }
 .small-swiper-custom-property {
 	height: 686px;
 	width: 406px;
-	overflow: visible;
 }
 
 .small-article-card {
