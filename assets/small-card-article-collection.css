@@ -54,10 +54,13 @@
 .swiper-small-article-card {
 	width: 100%;
 	overflow: visible;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 .swiper-small-article-card::-webkit-scrollbar {
-	display: none; /* For Chrome, Safari, and Edge */
+	display: none;
 }
+
 .small-swiper-custom-property {
 	height: 686px;
 	width: 406px;
@@ -72,7 +75,7 @@
 	flex-direction: column;
 }
 .small-article-image-container {
-	height: 50%;
+	height: 406px;
 }
 .small-article-image {
 	width: 100%;
@@ -81,7 +84,7 @@
 	object-position: center;
 }
 .small-article-details-container {
-	height: 50%;
+	height: 280px;
 }
 .small-article-details {
 	padding: 22px;
