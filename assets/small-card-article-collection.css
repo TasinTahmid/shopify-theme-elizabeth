@@ -109,6 +109,12 @@
 		width: 325px !important;
 	}
 }
+@media (max-width: 480px) {
+	.small-swiper-custom-property {
+		height: 580px !important;
+		width: 300px !important;
+	}
+}
 
 .small-article-card {
 	height: 100%;

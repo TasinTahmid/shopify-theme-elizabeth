@@ -8,12 +8,13 @@ body {
 .page-wrapper {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	overflow-x: hidden;
+	min-height: 100vh;
 }
 
-.main-content {
+/* .main-content {
 	flex: 1;
-}
+} */
 
 .size-6 {
 	width: 1.5rem;
