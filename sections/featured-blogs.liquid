@@ -7,7 +7,7 @@
     <div class="swiper swiper-large-article-card swiper-custom-property">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          <div class="swiper-slide ">
+          <div class="swiper-slide large-article-swiper-slide">
             <div class="large-article-card">
               <div class="article-image-container">
                 <img
@@ -94,6 +94,7 @@
     const swiper = new Swiper('.swiper-large-article-card', {
       direction: 'horizontal',
       loop: true,
+      spaceBetween: 16,
 
       navigation: {
         prevEl: '.large-article-button-prev',
