@@ -1,6 +1,11 @@
 .small-card-article-collection-container {
 	background-color: #f9f9f6;
 }
+@media (max-width: 767px) {
+	.small-card-article-collection-container {
+		padding: 0 16px;
+	}
+}
 .small-card-article-collection {
 	padding: 48px 0;
 	width: 1322px;
@@ -88,20 +93,20 @@
 }
 @media (max-width: 1199px) {
 	.small-swiper-custom-property {
-		height: 686px !important;
-		width: 406px !important;
+		height: 634px !important;
+		width: 354px !important;
 	}
 }
 @media (max-width: 991px) {
 	.small-swiper-custom-property {
-		height: 686px !important;
-		width: 406px !important;
+		height: 621px !important;
+		width: 341px !important;
 	}
 }
 @media (max-width: 767px) {
 	.small-swiper-custom-property {
-		height: 686px !important;
-		width: 406px !important;
+		height: 605px !important;
+		width: 325px !important;
 	}
 }
 
