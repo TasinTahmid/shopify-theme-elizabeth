@@ -4,7 +4,7 @@
 
 <div class="featured-blog-container">
   <div class="featured-blog">
-    <div class="swiper swiper-large-article-card swiper-custom-property">
+    <div class="swiper swiper-large-article-card-{{ section.id }} swiper-custom-property">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
           <div class="swiper-slide large-article-swiper-slide">
@@ -68,12 +68,12 @@
                   </a>
 
                   <div class="pagination-arrows-container">
-                    <div class="large-article-button-prev large-article-pagination-arrows">
+                    <div class="large-article-button-prev-{{section.id}} large-article-pagination-arrows">
                       <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.416 10.0078H1.41602M10.416 18.9878L1.41602 9.98779L10.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </div>
-                    <div class="large-article-button-next large-article-pagination-arrows">
+                    <div class="large-article-button-next-{{section.id}} large-article-pagination-arrows">
                       <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.416 10.0078H1.41602M11.416 18.9878L20.416 9.98779L11.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
@@ -91,14 +91,15 @@
 
 <script>
   (function () {
-    const swiper = new Swiper('.swiper-large-article-card', {
+    const sectionId = '{{ section.id }}';
+    const swiper = new Swiper(`.swiper-large-article-card-${sectionId}`, {
       direction: 'horizontal',
       loop: true,
       spaceBetween: 16,
 
       navigation: {
-        prevEl: '.large-article-button-prev',
-        nextEl: '.large-article-button-next',
+        prevEl: `.large-article-button-prev-${sectionId}`,
+        nextEl: `.large-article-button-next-${sectionId}`,
       },
     });
   })();
