@@ -74,6 +74,11 @@
 	flex-direction: column;
 	gap: 32px;
 }
+@media (max-width: 1367px) {
+	.article-details {
+		gap: 24px;
+	}
+}
 .article-list-category {
 	text-transform: uppercase;
 	font-size: 16px;
@@ -149,6 +154,11 @@
 	display: flex;
 	gap: 20px;
 	justify-content: end;
+}
+@media (max-width: 1366px) {
+	.pagination-arrows-container {
+		margin-top: 0;
+	}
 }
 .large-article-pagination-arrows {
 	position: relative;
