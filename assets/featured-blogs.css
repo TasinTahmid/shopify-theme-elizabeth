@@ -158,3 +158,14 @@
 .large-article-pagination-arrows:hover svg path {
 	stroke: white;
 }
+@media (max-width: 660px) {
+	.article-title {
+		font-size: 22px;
+	}
+	.aritcle-excerpt {
+		font-size: 16px;
+	}
+	.article-link-button {
+		padding: 18px 36px;
+	}
+}

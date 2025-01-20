@@ -37,9 +37,11 @@
 .sc-articles-header {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
 }
 .sc-articles-section-title {
-	margin-top: 0;
+	margin: 0;
 	font-family: "Roboto Serif";
 	font-size: 30px;
 	font-style: normal;
@@ -163,4 +165,27 @@
 }
 .small-article-link-button {
 	color: #747474;
+}
+
+@media (max-width: 480px) {
+	.all-articles-link {
+		font-size: 14px;
+		gap: 5px;
+	}
+	.sc-articles-section-title,
+	.small-article-title {
+		font-size: 20px;
+	}
+
+	.article-content,
+	.small-article-link-button {
+		font-size: small;
+	}
+}
+
+@media (max-width: 320px) {
+	.small-swiper-custom-property {
+		height: 540px !important;
+		width: 280px !important;
+	}
 }
