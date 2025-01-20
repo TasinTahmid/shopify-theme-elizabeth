@@ -1,6 +1,7 @@
 .featured-blog-container {
 	background-color: #f9f9f6;
 	padding: 48px 0;
+	font-family: "Figtree", serif;
 }
 .featured-blog {
 	height: 660px;
@@ -94,6 +95,11 @@
 		font-size: 25px;
 	}
 }
+@media (max-width: 767px) {
+	.article-title {
+		font-size: 24px;
+	}
+}
 .author-info {
 	display: flex;
 	gap: 16px;
@@ -114,6 +120,11 @@
 @media (max-width: 1366px) {
 	.aritcle-excerpt {
 		font-size: 18px;
+	}
+}
+@media (max-width: 767px) {
+	.aritcle-excerpt {
+		font-size: 16px;
 	}
 }
 .aritcle-excerpt p {

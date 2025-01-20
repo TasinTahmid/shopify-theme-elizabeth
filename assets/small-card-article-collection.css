@@ -1,5 +1,6 @@
 .small-card-article-collection-container {
 	background-color: #f9f9f6;
+	font-family: "Figtree", serif;
 }
 @media (max-width: 767px) {
 	.small-card-article-collection-container {
@@ -113,8 +114,8 @@
 }
 @media (max-width: 480px) {
 	.small-swiper-custom-property {
-		height: 580px !important;
-		width: 300px !important;
+		height: 560px !important;
+		width: 284px !important;
 	}
 }
 
@@ -143,6 +144,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
+}
+@media (max-width: 1366px) {
+	.article-details {
+		gap: 26px;
+	}
 }
 .small-article-title {
 	margin: 0;
@@ -177,7 +183,7 @@
 		font-size: 20px;
 	}
 
-	.article-content,
+	.small-aritcle-excerpt,
 	.small-article-link-button {
 		font-size: small;
 	}
@@ -186,6 +192,6 @@
 @media (max-width: 320px) {
 	.small-swiper-custom-property {
 		height: 540px !important;
-		width: 280px !important;
+		width: 266px !important;
 	}
 }
