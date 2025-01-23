@@ -1,19 +1,55 @@
-{% if pagination.pages > 1 %}
+<link rel="stylesheet" href="{{ 'pagination.css' | asset_url }}">
+{% if paginate.pages > 1 %}
   <nav role="navigation" class="pagination-nav">
-    {% if pagination.previous %}
+    {% if paginate.previous %}
       <a
-        href="{{ pagination.previous.url }}"
+        href="{{ paginate.previous.url }}"
         class="previous-button"
-        >Previous</a
       >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-4"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </a>
     {% endif %}
 
-    {% if pagination.next %}
+    {% for part in paginate.parts %}
+      {%- if part.is_link %}
+        <a
+          href="{{ part.url }}"
+          class="previous-button"
+        >
+          {{ part.title }}
+        </a>
+      {% else %}
+        <span class="{% if paginate.current_page == part.title  %}pg-current-page{% else %}previous-button {% endif %}">
+          {{- part.title -}}
+        </span>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginate.next %}
       <a
-        href="{{ pagination.next.url }}"
+        href="{{ paginate.next.url }}"
         class="next-button "
-        >Next</a
       >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-4"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </a>
     {% endif %}
   </nav>
 {% endif %}

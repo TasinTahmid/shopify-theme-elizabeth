@@ -1,0 +1,12 @@
+{
+	"name": "Blog",
+	"sections": {
+		"filter-header": {
+			"type": "filter-header"
+		},
+		"template": {
+			"type": "template-blog"
+		}
+	},
+	"order": ["filter-header", "template"]
+}

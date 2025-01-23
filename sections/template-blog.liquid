@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="{{ 'blog.css' | asset_url }}">
+
+<div class="bp-template-blog">
+  {% if request.path contains '/tagged/' %}
+    {% assign filter_applied = true %}
+    {% assign split_path = request.path | split: '/tagged/' %}
+    {% assign current_tag = split_path[1] | split: '_' -%}
+    {%- assign words = current_tag[1] | split: '-' %}
+    {% assign formatted_tag = '' %}
+
+    {% for word in words %}
+      {% assign capitalized_word = word | capitalize %}
+      {% if forloop.first %}
+        {% assign formatted_tag = capitalized_word %}
+      {% else %}
+        {% assign formatted_tag = formatted_tag | append: ' ' | append: capitalized_word %}
+      {% endif %}
+    {% endfor %}
+
+  {% else %}
+    {% assign filter_applied = false %}
+  {% endif %}
+  {% if filter_applied == true %}
+    <div class="bp-article-container">
+      {% paginate blog.articles by section.settings.number_of_blog_posts %}
+        <div class="">
+          <h1 class="bp-header">
+            {% comment %} <a href="/tagged/advice_how-to">advice tagged</a> {% endcomment %}
+            {{ formatted_tag }} Articles
+          </h1>
+        </div>
+
+        <div class="filter-drawer-container">
+          <div class="filter-drawer-opener">
+            {% render 'filter-icon' %}
+            <span>Filters</span>
+          </div>
+          <div class="article-count">{{ blog.articles_count }} articles</div>
+        </div>
+
+        <div class="bp-article-grid">
+          {% for article in blog.articles %}
+            <div class="">
+              <div class="bp-article-card">
+                <div class="bp-article-image-container">
+                  {% if article.image %}
+                    <a href="{{ article.url }}">
+                      <img
+                        class="bp-article-image"
+                        src="{{ article.image | image_url}}"
+                        alt="Article Image"
+                        height="100%"
+                        width="100%"
+                      >
+                    </a>
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: '' }}
+                  {% endif %}
+                </div>
+                <div class="bp-article-details-container">
+                  <div class="bp-article-details">
+                    <h1 class="bp-article-title">{{ article.title }}</h1>
+                    <div class="bp-aritcle-excerpt">
+                      {% if article.excerpt.size > 0 %}
+                        <p>{{ article.excerpt | strip_html | truncate: 200 }}</p>
+                      {% else %}
+                        <p>{{ article.content | strip_html | truncate: 200 }}</p>
+                      {% endif %}
+                    </div>
+
+                    <div class="bp-author-info">
+                      <img
+                        class="bp-author-image"
+                        src="{{ article.user.image  |  image_url  }}"
+                        alt="Author Image"
+                        height="60px"
+                        width="60px"
+                      >
+
+                      <p>
+                        by <span class="bp-author-name">{{ article.author }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="pagination">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      {% endpaginate %}
+    </div>
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Blog List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "blog_read_more",
+      "label": "Read more label",
+      "default": "Read more"
+    },
+    {
+      "type": "range",
+      "id": "number_of_blog_posts",
+      "step": 1,
+      "min": 1,
+      "max": 16,
+      "label": "Blog posts per page",
+      "default": 10
+    }
+  ]
+}
+{% endschema %}

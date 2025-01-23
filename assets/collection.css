@@ -34,31 +34,6 @@
 	gap: 1rem;
 }
 
-.previous-button,
-.next-button {
-	border: 1px solid #4b5563;
-	text-decoration: none;
-	color: #4b5563;
-	padding: 12px 32px;
-	margin: 0 4px;
-	border-radius: 2px;
-	font-weight: 400;
-	transition: background-color 0.2s, color 0.2s;
-}
-
-.pagination-nav {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 16px 0;
-}
-
-.previous-button:hover,
-.next-button:hover {
-	background-color: #4b5563;
-	color: #ffffff;
-}
-
 @media (max-width: 900px) {
 	.collection-grid {
 		display: grid;

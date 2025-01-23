@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="{{ 'filter-header.css' | asset_url }}">
+
+<div class="filter-header">
+  {% if request.path contains '/tagged/' %}
+    {% assign filter_applied = true %}
+    {% assign split_path = request.path | split: '/tagged/' %}
+    {% assign path_before_tagged = split_path[0] %}
+
+  {% else %}
+    {% assign filter_applied = false %}
+    {% assign path_before_tagged = request.path %}
+  {% endif %}
+  <div class="fh-container">
+    <div class="fh-section-title {% if filter_applied == false %}text-center{% endif %}">
+      {{ section.settings.filter_header_title }}
+    </div>
+
+    <div
+      class="fh-filter-button-container {% if filter_applied %}col-4-grid{% else %}col-3-grid{% endif %}"
+    >
+      {% for block in section.blocks %}
+        {% assign tag_linked_list = linklists[block.settings.filter_button] %}
+        <div class="fh-filter-button">
+          <button
+            type="button"
+            class="fh-flex-icon-button"
+            onclick="toggleDropdown('{{ block.id }}')"
+          >
+            <span>{{ tag_linked_list.title }}</span>
+            {% render 'dropdown-icon' %}
+          </button>
+
+          <div
+            id="dropdown-{{ block.id  }}"
+            class="fh-dropdown-wrapper"
+            style="display: none;"
+          >
+            <div class="fh-dropdown">
+              {% for link in tag_linked_list.links %}
+                <div class="fh-dropdown-links-wrapper">
+                  <a href="{{ path_before_tagged }}{{ link.url }}" class="fh-dropdown-links">
+                    {{ link.title }}
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+      {% if filter_applied %}
+        <div class="fh-back-to-article-top-button-wrapper">
+          <a href="{{ path_before_tagged }}" class="fh-back-to-article-top-button">
+            {% render 'arrow-uturn-left-icon' %}
+            <span>{{ section.settings['fh-back-button-label'] }}</span>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script>
+  const blockIds = [
+    {% for block in section.blocks %}
+      "{{ block.id }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  function toggleDropdown(id) {
+    blockIds.forEach(blockId => {
+      if(id === blockId){
+        const dropdown = document.getElementById(`dropdown-${id}`);
+        const isVisible = dropdown.style.display === 'block';
+        dropdown.style.display = isVisible ? 'none' : 'block';
+      }else{
+        const dropdown = document.getElementById(`dropdown-${blockId}`);
+        dropdown.style.display =  'none' ;
+      }
+    })
+
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Filter Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "filter_header_title",
+      "label": "Filter Header Title",
+      "default": "Advice & Inspiration"
+    },
+    {
+      "type": "text",
+      "id": "fh-back-button-label",
+      "label": "Filter Header Back Button Label",
+      "default": "Back to articles top"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_button",
+      "name": "Filter Button",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "filter_button",
+          "label": "Add Filter Menu"
+        }
+      ]
+      // "info": "This is title of the mobile menu window"
+    }
+  ]
+}
+{% endschema %}

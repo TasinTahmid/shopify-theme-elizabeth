@@ -42,14 +42,17 @@
 
                     <div class="small-aritcle-excerpt">
                       {% if block.settings.article_excerpt != blank %}
-                        {% assign article_excerpt = block.settings.article_excerpt %}
+                        {{ block.settings.article_excerpt | strip_html | truncate: 200 }}
                       {% else %}
-                        {% assign article_excerpt = block.settings.small_card_article.excerpt %}
+                        {% if article.excerpt.size > 0 %}
+                          <p>{{ block.settings.small_card_article.excerpt | strip_html | truncate: 200 }}</p>
+                        {% else %}
+                          <p>{{ block.settings.small_card_article.content | strip_html | truncate: 200 }}</p>
+                        {% endif %}
                       {% endif -%}
-                      {{ article_excerpt }}
                     </div>
 
-                    <a class="small-article-link-button" href="{{ block.settings.featured_article.url }}">
+                    <a class="small-article-link-button" href="{{ block.settings.small_card_article.url }}">
                       {{- block.settings.button_label -}}
                     </a>
                   </div>

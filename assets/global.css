@@ -12,10 +12,14 @@ body {
 	min-height: 100vh;
 }
 
-/* .main-content {
+.main-content {
 	flex: 1;
-} */
+}
 
+.size-4 {
+	width: 18px;
+	height: 18px;
+}
 .size-6 {
 	width: 1.5rem;
 	height: 1.5rem;
