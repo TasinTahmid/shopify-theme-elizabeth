@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="{{ 'featured-articles.css' | asset_url }}">
+
+{% assign blog = section.settings.fa_article_blog %}
+<div class="fa-featured-articles">
+  <div class="fa-article-container">
+    <div class="fa-article-header">
+      <h1 class="fa-article-section-title">{{ section.settings.fa_section_title }}</h1>
+      <a href="/blogs/{{ blog.title }}/tagged/{{ section.settings.fa_article_tag }}" class="fa-all-articles-link">
+        <div class="fa-all-articles-link">
+          See all articles
+          <div class="fa-all-articles-arrow-svg">
+            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.416 10.0078H1.41602M11.416 18.9878L20.416 9.98779L11.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="fa-article-slider">
+      <div class="swiper featured-articles-swiper ">
+        <div class="swiper-wrapper fa-swiper-custom-property">
+          {% for article in blog.articles -%}
+            {%- if article.tags contains 'featured-article' %}
+              <div class="swiper-slide ">
+                <div class="fa-article-card">
+                  <div class="fa-article-image-container">
+                    <img
+                      src="{{ article.image | image_url }}"
+                      class="fa-article-image"
+                      alt="Article Image"
+                      height="100%"
+                      width="100%"
+                    >
+                  </div>
+                  <div class="fa-article-details-container">
+                    <div class="fa-article-details">
+                      <h2 class="fa-article-title">
+                        {{ article.title }}
+                      </h2>
+
+                      <div class="fa-aritcle-excerpt">
+                        {% if article.excerpt.size > 0 %}
+                          <p>{{ article.excerpt | strip_html | truncate: 200 }}</p>
+                        {% else %}
+                          <p>{{ article.content | strip_html | truncate: 200 }}</p>
+                        {% endif %}
+                      </div>
+
+                      <a class="fa-article-link-button" href="{{ article.url }}">Read more </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const swiper = new Swiper('.featured-articles-swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 34,
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Featured Articles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "fa_section_title",
+      "label": "Section Title",
+      "default": "Some of Our Articles"
+    },
+    {
+      "type": "blog",
+      "id": "fa_article_blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "text",
+      "id": "fa_article_tag",
+      "label": "Select Article Tag",
+      "default": "featured-article"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Articles"
+    }
+  ]
+}
+{% endschema %}

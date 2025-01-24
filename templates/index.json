@@ -8,18 +8,15 @@
 			}
 		},
 		"promo-banner": { "type": "promo-banner" },
-		"our-services": { "type": "our-services" },
-		"featured-blogs": { "type": "featured-blogs" },
-		"small-card-article-collection": {
-			"type": "small-card-article-collection"
-		}
+		"featured-articles": { "type": "featured-articles" },
+
+		"our-services": { "type": "our-services" }
 	},
 	"order": [
 		"collection-hero-section",
 		"featured-collection",
 		"promo-banner",
-		"our-services",
-		"featured-blogs",
-		"small-card-article-collection"
+		"featured-articles",
+		"our-services"
 	]
 }

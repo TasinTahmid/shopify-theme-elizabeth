@@ -38,7 +38,19 @@
 	font-family: "Roboto Serif";
 	font-size: 40px;
 	font-weight: 600;
+	margin: 0;
 }
+@media (max-width: 991px) {
+	.fh-section-title {
+		text-align: center;
+	}
+}
+@media (max-width: 768px) {
+	.fh-section-title {
+		font-size: 32px;
+	}
+}
+
 .text-center {
 	text-align: center;
 }

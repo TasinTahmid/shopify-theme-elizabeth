@@ -1,100 +1,106 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="{{ 'featured-blogs.css' | asset_url }}">
 
-<div class="featured-blog-container">
-  <div class="featured-blog">
-    <div class="swiper swiper-large-article-card-{{ section.id }} swiper-custom-property">
-      <div class="swiper-wrapper">
-        {% for block in section.blocks %}
-          <div class="swiper-slide large-article-swiper-slide">
-            <div class="large-article-card">
-              <div class="article-image-container">
-                <img
-                  src="{{ block.settings.featured_article.image | image_url }}"
-                  class="article-image"
-                  alt="Article Image"
-                  height="100%"
-                  width="100%"
-                >
-              </div>
-              <div class="article-details-container">
-                <div class="article-details">
-                  <h4 class="article-list-category">{{ section.settings.section_title }}</h4>
+{% assign blog_filter_applied = false %}
+{% if template.name == 'blog' and request.path contains '/tagged/' %}
+  {% assign blog_filter_applied = true %}
+{% endif %}
 
-                  <h2 class="article-title">
-                    {% if block.settings.article_title != blank %}
-                      {{ block.settings.article_title }}
-                    {% else %}
-                      {{ block.settings.featured_article.title }}
-                    {% endif %}
-                  </h2>
+{% if blog_filter_applied == false %}
+  <div class="featured-blog-container">
+    <div class="featured-blog">
+      <div class="swiper swiper-large-article-card-{{ section.id }} swiper-custom-property">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide large-article-swiper-slide">
+              <div class="large-article-card">
+                <div class="article-image-container">
+                  <img
+                    src="{{ block.settings.featured_article.image | image_url }}"
+                    class="article-image"
+                    alt="Article Image"
+                    height="100%"
+                    width="100%"
+                  >
+                </div>
+                <div class="article-details-container">
+                  <div class="article-details">
+                    <h4 class="article-list-category">{{ section.settings.section_title }}</h4>
 
-                  <div class="author-info">
-                    {% if block.settings.author_image != blank %}
-                      {% assign author_image = block.settings.author_image %}
-                    {% else %}
-                      {% assign author_image = block.settings.featured_article.user.image %}
-                    {% endif %}
-                    <img
-                      class="author-image"
-                      src="{{ author_image |  image_url  }}"
-                      alt="Author Image"
-                      height="60px"
-                      width="60px"
-                    >
-
-                    {% if block.settings.author_image != blank %}
-                      {% assign author_name = block.settings.author_name %}
-                    {% else %}
-                      {% assign author_name = block.settings.featured_article.author %}
-                    {% endif %}
-                    <p>
-                      by <span class="author-name">{{ author_name }}</span>
-                    </p>
-                  </div>
-
-                  <div class="aritcle-excerpt">
-                    {% if block.settings.article_excerpt != blank %}
-                      <p>{{ block.settings.article_excerpt | strip_html | truncate: 200 }}</p>
-                    {% else %}
-                      {% if article.excerpt.size > 0 %}
-                        <p>{{ block.settings.featured_article.excerpt | strip_html | truncate: 200 }}</p>
+                    <h2 class="article-title">
+                      {% if block.settings.article_title != blank %}
+                        {{ block.settings.article_title }}
                       {% else %}
-                        <p>{{ block.settings.featured_article.content | strip_html | truncate: 200 }}</p>
+                        {{ block.settings.featured_article.title }}
                       {% endif %}
-                    {% endif -%}
-                  </div>
+                    </h2>
 
-                  <a class="article-link-button" href="{{ block.settings.featured_article.url }}">
-                    {{- block.settings.button_label -}}
-                  </a>
+                    <div class="author-info">
+                      {% if block.settings.author_image != blank %}
+                        {% assign author_image = block.settings.author_image %}
+                      {% else %}
+                        {% assign author_image = block.settings.featured_article.user.image %}
+                      {% endif %}
+                      <img
+                        class="author-image"
+                        src="{{ author_image |  image_url  }}"
+                        alt="Author Image"
+                        height="60px"
+                        width="60px"
+                      >
 
-                  <div class="pagination-arrows-container">
-                    <div class="large-article-button-prev-{{section.id}} large-article-pagination-arrows">
-                      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.416 10.0078H1.41602M10.416 18.9878L1.41602 9.98779L10.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
+                      {% if block.settings.author_image != blank %}
+                        {% assign author_name = block.settings.author_name %}
+                      {% else %}
+                        {% assign author_name = block.settings.featured_article.author %}
+                      {% endif %}
+                      <p>
+                        by <span class="author-name">{{ author_name }}</span>
+                      </p>
                     </div>
-                    <div class="large-article-button-next-{{section.id}} large-article-pagination-arrows">
-                      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.416 10.0078H1.41602M11.416 18.9878L20.416 9.98779L11.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
+
+                    <div class="aritcle-excerpt">
+                      {% if block.settings.article_excerpt != blank %}
+                        <p>{{ block.settings.article_excerpt | strip_html | truncate: 150 }}</p>
+                      {% else %}
+                        {% if article.excerpt.size > 0 %}
+                          <p>{{ block.settings.featured_article.excerpt | strip_html | truncate: 150 }}</p>
+                        {% else %}
+                          <p>{{ block.settings.featured_article.content | strip_html | truncate: 150 }}</p>
+                        {% endif %}
+                      {% endif -%}
+                    </div>
+
+                    <a class="article-link-button" href="{{ block.settings.featured_article.url }}">
+                      {{- block.settings.button_label -}}
+                    </a>
+
+                    <div class="pagination-arrows-container">
+                      <div class="large-article-button-prev-{{section.id}} large-article-pagination-arrows">
+                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.416 10.0078H1.41602M10.416 18.9878L1.41602 9.98779L10.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <div class="large-article-button-next-{{section.id}} large-article-pagination-arrows">
+                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.416 10.0078H1.41602M11.416 18.9878L20.416 9.98779L11.416 0.987793" stroke="#747474" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
-</div>
+{% endif %}
 
 <script>
   (function () {
     const sectionId = '{{ section.id }}';
+    console.log(`.swiper-large-article-card-${sectionId}`);
     const swiper = new Swiper(`.swiper-large-article-card-${sectionId}`, {
       direction: 'horizontal',
       loop: true,

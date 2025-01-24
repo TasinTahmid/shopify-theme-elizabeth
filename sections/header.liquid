@@ -5,9 +5,9 @@
   <div>
     <div class="desktop-nav">
       <!-- STORE NAME / STORE LOGO -->
-      <div>
+      <a href="/" class="desktop-store-title">
         <h1 class="desktop-store-title">{{ section.settings.mobile_menu_title }}</h1>
-      </div>
+      </a>
 
       <!-- NAVIGATION MENU -->
       <nav class="desktop-nav-links-container">
@@ -104,9 +104,9 @@
         <div class="mobile-side-menu-bar">
           <!-- MOBILE MENU HEADER TITLE PLUS CLOSE BUTTON -->
           <div class="mobile-nav-header">
-            <div>
+            <a href="/" class="mobile-store-title">
               <h1 class="mobile-store-title">{{ section.settings.mobile_menu_title }}</h1>
-            </div>
+            </a>
             <div>
               <button @click="mobileMenuOpen = false" type="button" class="icon-button">
                 {% render 'close-icon' %}
@@ -167,7 +167,7 @@
       "type": "text",
       "id": "mobile_menu_title",
       "label": "Title",
-      "default": "Menu",
+      "default": "OGStore",
       "info": "This is title of the mobile menu window"
     },
     {

@@ -12,13 +12,28 @@
 	justify-content: space-between;
 	align-items: center;
 }
+@media (max-width: 1199px) {
+	.desktop-nav-links-container {
+		margin-right: auto;
+	}
+}
+
 .desktop-store-title {
 	font-size: 1.25rem;
+	min-width: 190px;
 	font-weight: 700;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-decoration: none;
+	color: #201f1f;
 }
+@media (max-width: 1199px) {
+	.desktop-store-title {
+		min-width: 150px;
+	}
+}
+
 .desktop-nav-links {
 	margin-right: 10px;
 	color: #707070;
@@ -155,6 +170,7 @@
 .mobile-store-title {
 	font-size: 1.1rem;
 	color: #6b7280;
+	text-decoration: none;
 }
 
 .mobile-nav-items-wrapper {

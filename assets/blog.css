@@ -41,12 +41,23 @@
 	font-size: 46px;
 	font-weight: 600;
 }
+@media (max-width: 991px) {
+	.bp-header {
+		font-size: 26px;
+	}
+}
 
 .filter-drawer-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
+@media (max-width: 767px) {
+	.filter-drawer-container {
+		padding: 0 16px;
+	}
+}
+
 .filter-drawer-opener {
 	display: flex;
 	align-items: center;

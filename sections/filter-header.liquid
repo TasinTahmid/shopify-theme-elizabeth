@@ -11,9 +11,9 @@
     {% assign path_before_tagged = request.path %}
   {% endif %}
   <div class="fh-container">
-    <div class="fh-section-title {% if filter_applied == false %}text-center{% endif %}">
+    <h2 class="fh-section-title {% if filter_applied == false %}text-center{% endif %}">
       {{ section.settings.filter_header_title }}
-    </div>
+    </h2>
 
     <div
       class="fh-filter-button-container {% if filter_applied %}col-4-grid{% else %}col-3-grid{% endif %}"
