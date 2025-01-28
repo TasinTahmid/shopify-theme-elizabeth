@@ -4,10 +4,11 @@
   {% if request.path contains '/tagged/' %}
     {% assign filter_applied = true %}
     {% assign split_path = request.path | split: '/tagged/' %}
-    {% assign current_tag = split_path[1] | split: '_' -%}
+    {% assign active_tags = split_path[1] | split: '+' -%}
+
+    {% assign current_tag = active_tags[0] | split: '_' -%}
     {%- assign words = current_tag[1] | split: '-' %}
     {% assign formatted_tag = '' %}
-
     {% for word in words %}
       {% assign capitalized_word = word | capitalize %}
       {% if forloop.first %}
@@ -31,11 +32,80 @@
         </div>
 
         <div class="filter-drawer-container">
-          <div class="filter-drawer-opener">
+          <div class="filter-drawer-opener" onclick="openFilterDrawer()">
             {% render 'filter-icon' %}
             <span>Filters</span>
           </div>
           <div class="article-count">{{ blog.articles_count }} articles</div>
+
+          {% comment %}---- From here the Filter drawer starts ----{% endcomment %}
+          {% comment %} <div class="bp-filter-overlay" onclick="closeFilterDrawer()"></div> {% endcomment %}
+          <div class="bp-filter-container">
+            <div class="bp-filter-drawer-container">
+              <div class="bp-filter-drawer">
+                <div class="bp-filter-drawer-header">
+                  <h1 class="bp-filter-drawer-title">Filter</h1>
+                  <div class="bp-filter-drawer-close-button" onclick="closeFilterDrawer()">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21 21L1 1M21 1L1 21" stroke="#AAAAAA" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="bp-filter-drawer-content">
+                  {% for block in section.blocks %}
+                    {% assign tag_linked_list = linklists[block.settings.filter_parameter] %}
+                    <div class="bp-filter-drawer-inner-items">
+                      <div
+                        class="bp-filter-drawer-parameter bp-filter-drawer-parameter-{{ block.id }}"
+                        onclick="toggleFilterParameters('{{ block.id }}')"
+                      >
+                        <h2>
+                          {{ tag_linked_list.title -}}
+                        </h2>
+
+                        <div class="dropdown-up-icon" style="display: block;">
+                          {% render 'dropdown-up-icon' %}
+                        </div>
+                        <div class="dropdown-down-icon" style="display: none;">
+                          {% render 'dropdown-icon' %}
+                        </div>
+                      </div>
+                      <div
+                        class="bp-filter-tag-list-container bp-filter-tag-list-container-{{ block.id }}"
+                        style="display: block;"
+                      >
+                        {% for link in tag_linked_list.links %}
+                          {% assign present_tag = link.url | split: '/tagged/' %}
+                          <div class="bp-filter-tag-container">
+                            <label
+                              for="bp-filter-tag-checkbox-{{ link.url }}"
+                              class="bp-filter-tag-label"
+                            >
+                              {{ link.title }}
+                            </label>
+                            <input
+                              value="{{ present_tag }}"
+                              type="checkbox"
+                              {% if active_tags contains present_tag[1] %}
+                                checked
+                              {% endif %}
+                              class="bp-filter-tag-checkbox"
+                              id="bp-filter-tag-checkbox-{{ link.url }}"
+                            >
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="bp-filter-drawer-footer">
+                  <button class="clear-tags" onclick="clearFilters('{{ split_path[0] }}')">Clear</button>
+                  <button class="apply-filters" onclick="applyFilters('{{ split_path[0] }}')">Apply Filters</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% comment %}----  Filter drawer ends ----{% endcomment %}
         </div>
 
         <div class="bp-article-grid">
@@ -94,9 +164,63 @@
     </div>
   {% endif %}
 </div>
+
+<script>
+  function openFilterDrawer() {
+    const overlay = document.querySelector('.bp-filter-overlay');
+    // const container = document.querySelector('.bp-filter-container');
+    overlay.style.display = 'block';
+    const d_container = document.querySelector('.bp-filter-drawer-container');
+    d_container.style.left = 0;
+  }
+  function closeFilterDrawer() {
+    // const container = document.querySelector('.bp-filter-container');
+    const overlay = document.querySelector('.bp-filter-overlay');
+
+    overlay.style.display = 'none';
+    const d_container = document.querySelector('.bp-filter-drawer-container');
+    d_container.style.left = '-150vh';
+  }
+
+  function toggleDisplayProperty(element) {
+    const isVisible = element.style.display === 'block';
+    element.style.display = isVisible ? 'none' : 'block';
+  }
+
+  function toggleFilterParameters(id) {
+    const parameterDiv = document.querySelector(`.bp-filter-drawer-parameter-${id}`);
+    toggleDisplayProperty(parameterDiv?.querySelector('.dropdown-up-icon'));
+    toggleDisplayProperty(parameterDiv?.querySelector('.dropdown-down-icon'));
+    toggleDisplayProperty(document?.querySelector(`.bp-filter-tag-list-container-${id}`));
+  }
+
+  function clearFilters() {
+    checkboxList = document.getElementsByClassName('bp-filter-tag-checkbox');
+
+    Array.from(checkboxList).forEach((input) => {
+      input.checked = false;
+    });
+  }
+  function applyFilters(pathUrl) {
+    checkboxList = document.getElementsByClassName('bp-filter-tag-checkbox');
+    let url = pathUrl;
+    let i = 0;
+    Array.from(checkboxList).forEach((input) => {
+      if (input.checked) {
+        if (i == 0) {
+          url = url + '/tagged/' + input.value;
+          i++;
+        } else url += `+${input.value}`;
+      }
+    });
+
+    window.location = url;
+  }
+</script>
+
 {% schema %}
 {
-  "name": "Blog List",
+  "name": "Blog Page",
   "settings": [
     {
       "type": "text",
@@ -127,6 +251,19 @@
         }
       ],
       "default": "6"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_parameter",
+      "name": "Filter Parmeter",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "filter_parameter",
+          "label": "Add Filter Parmeter"
+        }
+      ]
     }
   ]
 }
