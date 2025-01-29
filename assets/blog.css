@@ -92,36 +92,72 @@
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	height: 42%;
+	height: 100%;
 	width: 100%;
 	opacity: 0.3;
 	left: 0;
 }
 
 .bp-filter-drawer-container {
-	width: 100%;
+	width: 42%;
 	height: 100%;
-	padding: 32px 16px;
+
 	position: fixed;
 	background: #ffffff;
 	z-index: 9999;
 	top: 0;
-	overflow: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
 	left: -150vh;
 	transition: 0.75s;
 }
 @media (max-width: 991px) {
 	.bp-filter-drawer-container {
 		width: 100%;
-		padding: 0;
 	}
 }
 .bp-filter-drawer {
-	width: 80%;
-	height: 100%;
+	width: calc(100% - ((100vw - 1292px) / 2) - 2rem);
 	margin-left: auto;
 	margin-right: 2rem;
-	margin-top: 5rem;
+	margin-top: 140px;
+	/* margin: 5rem 2rem 5rem auto; */
+}
+@media (max-width: 1300px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 1200px) / 2) - 2rem);
+	}
+}
+@media (max-width: 1199px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 992px) / 2) - 2rem);
+	}
+}
+@media (max-width: 991px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 768px) / 2) - 2rem);
+		margin-top: 60px;
+	}
+}
+@media (max-width: 767px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 600px) / 2) - 1rem);
+	}
+}
+@media (max-width: 640px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 480px) / 2) - 1rem);
+	}
+}
+@media (max-width: 499px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 360px) / 2) - 1rem);
+	}
+}
+@media (max-width: 370px) {
+	.bp-filter-drawer {
+		width: calc(100% - ((100vw - 310px) / 2) - 1rem);
+	}
 }
 
 .bp-filter-drawer-header {
@@ -140,7 +176,7 @@
 }
 
 .bp-filter-drawer-content {
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 	scrollbar-width: thin;
 }
 
@@ -163,15 +199,35 @@
 	font-weight: 400;
 	text-transform: uppercase;
 }
-.dropdown-up-icon {
-	display: block;
+
+.expanded .dropdown-down-icon {
+	transform: rotateX(180deg);
+	transition: transform 0.2s ease-in-out;
 }
-.dropdown-down-icon {
-	display: none;
+.collapsed .dropdown-down-icon {
+	transform: rotateX(0deg);
+	transition: transform 0.2s ease-in-out;
 }
 
 .bp-filter-tag-list-container {
 	margin-top: 16px;
+	max-height: 350px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+.expanded .bp-filter-tag-list-container {
+	min-height: fit-content;
+	max-height: 350px;
+	visibility: hidden;
+	transition: min-height 0.5s ease-in, max-height 0.5s ease-in,
+		visibility 0.3s ease-in;
+}
+.collapsed .bp-filter-tag-list-container {
+	min-height: 0;
+	max-height: 0;
+	visibility: hidden;
+	transition: max-height 0.3s ease-in, visibility 0.3s ease-in;
 }
 .bp-filter-tag-container {
 	display: flex;
