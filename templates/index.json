@@ -1,5 +1,6 @@
 {
 	"sections": {
+		// "mega-nav": { "type": "mega-nav" },
 		"collection-hero-section": { "type": "collection-hero-section" },
 		"featured-collection": {
 			"type": "featured-collection",
@@ -13,6 +14,7 @@
 		"our-services": { "type": "our-services" }
 	},
 	"order": [
+		// "mega-nav",
 		"collection-hero-section",
 		"featured-collection",
 		"promo-banner",

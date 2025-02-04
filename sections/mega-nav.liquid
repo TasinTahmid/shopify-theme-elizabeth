@@ -1,0 +1,191 @@
+<link rel="stylesheet" href="{{ 'mega-nav.css' | asset_url }}">
+
+{% assign collection_link_list = linklists[section.settings['meganav-collection']].links -%}
+<div class="c__mega-nav">
+  <div class="c__mega-nav-elements-container">
+    <ul>
+      {% for nav_item in collection_link_list %}
+        <li
+          onmouseover="showMeganavDropdown(this)"
+          onmouseleave="hideMeganavDropdown(this)"
+        >
+          <a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+
+          {% for block in section.blocks %}
+            {% if block.settings['meganav-collection'].url == nav_item.url %}
+              <div class="mega-nav-dropdown">
+                <div class="dropdown-element-container">
+                  <div class="mega-nav-collection-details">
+                    {% assign collection = block.settings['meganav-collection'] %}
+                    <h3 class="mega-nav-collection-title">
+                      {{ collection.title }}
+                    </h3>
+                    <div class="mega-nav-collection-description">
+                      {{ collection.description }}
+                    </div>
+                    <a href="{{ nav_item.url }}">View all products</a>
+                  </div>
+                  {% assign product_1 = block.settings['dropdown-product-1'] %}
+                  {% assign product_2 = block.settings['dropdown-product-2'] -%}
+                  {%- assign product_3 = block.settings['dropdown-product-3'] %}
+
+                  {% if product_1 != blank and product_2 != blank and product_3 != blank %}
+                    <div class="product-1">
+                      <a href="{{ product_1.url }}" class="mega-nav-product-image-container">
+                        <img
+                          src="{{ product_1.images[0] | image_url }}"
+                          class="mega-nav-product-image"
+                          {% comment %} class="article-image" {% endcomment %}
+                          alt="Article Image"
+                          height="100%"
+                          width="100%"
+                        >
+                      </a>
+                      <a href="{{ product_1.url }}" class="mega-nav-product-details">
+                        <h3 class="mega-nav-product-title">{{ product_1.title }}</h3>
+                        <span class="mega-nav-product-price">{{ product_1.price | money }}</span>
+                        {% comment %} <p>{{ product_1.description }}</p> {% endcomment %}
+                      </a>
+                    </div>
+                    <div class="product-2">
+                      <a href="{{ product_2.url }}" class="mega-nav-product-image-container">
+                        <img
+                          src="{{ product_2.images[0] | image_url }}"
+                          class="mega-nav-product-image"
+                          {% comment %} class="article-image" {% endcomment %}
+                          alt="Article Image"
+                          height="100%"
+                          width="100%"
+                        >
+                      </a>
+                      <a href="{{ product_2.url }}" class="mega-nav-product-details">
+                        <h3 class="mega-nav-product-title">{{ product_2.title }}</h3>
+                        <span class="mega-nav-product-price">{{ product_2.price | money }}</span>
+                        {% comment %} <p>{{ product_2.description }}</p> {% endcomment %}
+                      </a>
+                    </div>
+                    <div class="product-3">
+                      <a href="{{ product_3.url }}" class="mega-nav-product-image-container">
+                        <img
+                          src="{{ product_3.images[0] | image_url }}"
+                          class="mega-nav-product-image"
+                          {% comment %} class="article-image" {% endcomment %}
+                          alt="Article Image"
+                          height="100%"
+                          width="100%"
+                        >
+                      </a>
+                      <a href="{{ product_3.url }}" class="mega-nav-product-details">
+                        <h3 class="mega-nav-product-title">{{ product_3.title }}</h3>
+                        <span class="mega-nav-product-price">{{ product_3.price | money }}</span>
+                        {% comment %} <p>{{ product_3.description }}</p> {% endcomment %}
+                      </a>
+                    </div>
+                  {% else %}
+                    {% for product in collection.products limit: 3 %}
+                      <div class="">
+                        <a href="{{ product.url }}" class="mega-nav-product-image-container">
+                          <img
+                            src="{{ product.images[0] | image_url }}"
+                            class="mega-nav-product-image"
+                            {% comment %} class="article-image" {% endcomment %}
+                            alt="Article Image"
+                            height="100%"
+                            width="100%"
+                          >
+                        </a>
+                        <a href="{{ product.url }}" class="mega-nav-product-details">
+                          <h3 class="mega-nav-product-title">{{ product.title }}</h3>
+                          <span class="mega-nav-product-price">{{ product.price | money }}</span>
+                          {% comment %} <p>{{ product.description }}</p> {% endcomment %}
+                        </a>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <span class="customer-support"
+      >Need help? Visit our <a href="/pages/contact" class="help-link">Help Centre</a></span
+    >
+  </div>
+
+  {% comment %}
+    {% for block in section.blocks %}
+      {{ block.settings['meganav-collection'].url }}
+    {% endfor %}
+  {% endcomment %}
+</div>
+
+<script>
+  function showMeganavDropdown(element) {
+    console.log(element);
+    const meganavDropdown = element.querySelector('.mega-nav-dropdown');
+
+    meganavDropdown.style.display = 'block';
+    element.classList.add('c__mega-nav-menu-border-bottom');
+  }
+  function hideMeganavDropdown(element) {
+    const meganavDropdown = element.querySelector('.mega-nav-dropdown');
+
+    meganavDropdown.style.display = 'none';
+    element.classList.remove('c__mega-nav-menu-border-bottom');
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Mega Nav",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "meganav-collection",
+      "label": "Add Collection"
+    }
+  ],
+  //   "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "mega-nav-menu",
+      "name": "Mega Nav Menu",
+      "settings": [
+        { "type": "header", "content": "Collection" },
+        {
+          "type": "paragraph",
+          "content": "If you don't select any Collection, no Product will be displayed in Meganav."
+        },
+        {
+          "type": "collection",
+          "id": "meganav-collection",
+          "label": "Add Collection"
+        },
+        { "type": "header", "content": "Products to Display (Optional)" },
+        {
+          "type": "paragraph",
+          "content": "If you don't select any product, first 3 products from the selected Collection will be displayed."
+        },
+        {
+          "type": "product",
+          "id": "dropdown-product-1",
+          "label": "Add 1st Product"
+        },
+        {
+          "type": "product",
+          "id": "dropdown-product-2",
+          "label": "Add 2nd Product"
+        },
+        {
+          "type": "product",
+          "id": "dropdown-product-3",
+          "label": "Add 3rd Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

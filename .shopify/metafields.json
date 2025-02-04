@@ -9,7 +9,68 @@
   "market": [],
   "order": [],
   "page": [],
-  "product": [],
+  "product": [
+    {
+      "key": "food-product-form",
+      "namespace": "shopify",
+      "name": "Food product form",
+      "description": "Specifies the form in which the food product is presented, such as dried or frozen",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "suitable-space",
+      "namespace": "shopify",
+      "name": "Suitable space",
+      "description": "Defines the ideal location for product use, e.g. indoors, above ground",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "plant-class",
+      "namespace": "shopify",
+      "name": "Plant class",
+      "description": "Classifies plants into specific taxonomic groups, e.g. liliopsida, brassicales",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "plant-characteristics",
+      "namespace": "shopify",
+      "name": "Plant characteristics",
+      "description": "Defines specific traits of plants, e.g. flowering, edible",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "sunlight",
+      "namespace": "shopify",
+      "name": "Sunlight",
+      "description": "Specifies the amount of sunlight needed for plants, such as shade or full sun",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "plant-name",
+      "namespace": "shopify",
+      "name": "Plant name",
+      "description": "Identifies the botanical or common name of the plant, such as rose, basil, or cucumber",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
   "variant": [],
   "shop": []
 }
