@@ -205,7 +205,7 @@
 	margin: 0 18px;
 }
 /* To hide Desktop Contents */
-@media (max-width: 768px) {
+@media (max-width: 991px) {
 	.desktop-nav-links-container,
 	.cart-and-user-menu {
 		display: none;
@@ -213,7 +213,7 @@
 }
 
 /* To hide Mobile Contents */
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	.mobile-menu-icon,
 	.mobile-side-menu-bar {
 		display: none;

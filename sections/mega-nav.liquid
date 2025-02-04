@@ -6,7 +6,7 @@
     <ul>
       {% for nav_item in collection_link_list %}
         <li
-          onmouseover="showMeganavDropdown(this)"
+          onclick="showMeganavDropdown(this)"
           onmouseleave="hideMeganavDropdown(this)"
         >
           <a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
@@ -115,6 +115,132 @@
     >
   </div>
 
+  <div class="c__mobile-menu-icon">
+    <button
+      type="button"
+      class="icon-button"
+      onclick="showMobileSideNav()"
+    >
+      {% render 'menu-icon' %}
+    </button>
+  </div>
+  <div class="c__mobile-side-nav hidden">
+    <div class="c__mobile-side-nav-header">
+      <button
+        type="button"
+        class="c__icon-button"
+        onclick="hideMobileSideNav()"
+      >
+        {% render 'close-icon' %}
+      </button>
+    </div>
+    <div class="c__mobile-side-nav-content">
+      <ul>
+        {% for nav_item in collection_link_list %}
+          <li>
+            {% assign flag = false %}
+            {% for block in section.blocks %}
+              {% if block.settings['meganav-collection'].url == nav_item.url %}
+                <div
+                  class="c__mobile-side-nav-content-header"
+                  onclick="toggleMobileNavDropdown(this)"
+                >
+                  <span>{{ nav_item.title }}</span>
+                  <button
+                    type="button"
+                    class="c__icon-button"
+                  >
+                    {% render 'dropdown-icon' %}
+                  </button>
+                </div>
+                <div class="c__mobile-nav-dropdown" style="display: block;">
+                  <div class="mobile-dropdown-element-container">
+                    {% assign product_1 = block.settings['dropdown-product-1'] %}
+                    {% assign product_2 = block.settings['dropdown-product-2'] -%}
+                    {%- assign product_3 = block.settings['dropdown-product-3'] %}
+
+                    {% if product_1 != blank and product_2 != blank and product_3 != blank %}
+                      <div class="mobile-sidebar-product-container">
+                        <a href="{{ product_1.url }}" class="mobile-sidebar-product-image-container">
+                          <img
+                            src="{{ product_1.images[0] | image_url }}"
+                            class="mega-nav-product-image"
+                            {% comment %} class="article-image" {% endcomment %}
+                            alt="Article Image"
+                            height="100%"
+                            width="100%"
+                          >
+                        </a>
+                        <a href="{{ product_1.url }}" class="mega-nav-product-details">
+                          <h3 class="mobile-nav-product-title">{{ product_1.title }}</h3>
+                        </a>
+                      </div>
+                      <div class="mobile-sidebar-product-container">
+                        <a href="{{ product_2.url }}" class="mobile-sidebar-product-image-container">
+                          <img
+                            src="{{ product_2.images[0] | image_url }}"
+                            class="mega-nav-product-image"
+                            {% comment %} class="article-image" {% endcomment %}
+                            alt="Article Image"
+                            height="100%"
+                            width="100%"
+                          >
+                        </a>
+                        <a href="{{ product_2.url }}" class="mega-nav-product-details">
+                          <h3 class="mobile-nav-product-title">{{ product_2.title }}</h3>
+                        </a>
+                      </div>
+                      <div class="mobile-sidebar-product-container">
+                        <a href="{{ product_3.url }}" class="mobile-sidebar-product-image-container">
+                          <img
+                            src="{{ product_3.images[0] | image_url }}"
+                            class="mega-nav-product-image"
+                            {% comment %} class="article-image" {% endcomment %}
+                            alt="Article Image"
+                            height="100%"
+                            width="100%"
+                          >
+                        </a>
+                        <a href="{{ product_3.url }}" class="mega-nav-product-details">
+                          <h3 class="mobile-nav-product-title">{{ product_3.title }}</h3>
+                        </a>
+                      </div>
+                    {% else %}
+                      {% for product in collection.products limit: 3 %}
+                        <div class="mobile-sidebar-product-container">
+                          <a href="{{ product.url }}" class="mobile-sidebar-product-image-container">
+                            <img
+                              src="{{ product.images[0] | image_url }}"
+                              class="mega-nav-product-image"
+                              {% comment %} class="article-image" {% endcomment %}
+                              alt="Article Image"
+                              height="100%"
+                              width="100%"
+                            >
+                          </a>
+                          <a href="{{ product.url }}" class="mega-nav-product-details">
+                            <h3 class="mobile-nav-product-title">{{ product.title }}</h3>
+                          </a>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                {% assign flag = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            {% if flag == false %}
+              <div class="c__mobile-side-nav-content-header">
+                <span>{{ nav_item.title }}</span>
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
   {% comment %}
     {% for block in section.blocks %}
       {{ block.settings['meganav-collection'].url }}
@@ -135,6 +261,25 @@
 
     meganavDropdown.style.display = 'none';
     element.classList.remove('c__mega-nav-menu-border-bottom');
+  }
+
+  function showMobileSideNav() {
+    const mobileSideNav = document.querySelector('.c__mobile-side-nav');
+
+    mobileSideNav.classList.remove('hidden');
+  }
+  function hideMobileSideNav() {
+    const mobileSideNav = document.querySelector('.c__mobile-side-nav');
+
+    mobileSideNav.classList.add('hidden');
+  }
+
+  function toggleMobileNavDropdown(element) {
+    const dropdownElement = element.parentElement.querySelector('.c__mobile-nav-dropdown');
+
+    dropdownElement.style.display == 'none'
+      ? (dropdownElement.style.display = 'block')
+      : (dropdownElement.style.display = 'none');
   }
 </script>
 
