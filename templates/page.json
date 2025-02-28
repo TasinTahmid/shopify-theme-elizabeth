@@ -1,8 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "template": {
-      "type": "template-page"
+      "type": "template-page",
+      "settings": {}
+    },
+    "1740741891409df6fd": {
+      "type": "apps",
+      "blocks": {
+        "discount_exchange_star_rating_VM6AMz": {
+          "type": "shopify://apps/discount-exchange/blocks/star_rating/535affa5-10ce-4db9-8187-96d1d8e952b7",
+          "settings": {
+            "product": "",
+            "colour": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "discount_exchange_star_rating_VM6AMz"
+      ],
+      "settings": {}
     }
   },
-  "order": ["template"]
+  "order": [
+    "template",
+    "1740741891409df6fd"
+  ]
 }
