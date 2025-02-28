@@ -17,11 +17,11 @@
       "type": "apps",
       "settings": {}
     },
-    "174074939044597518": {
+    "17407558848233b351": {
       "type": "apps",
       "blocks": {
-        "discount_exchange_star_rating_hHtfYb": {
-          "type": "shopify://apps/discount-exchange/blocks/star_rating/535affa5-10ce-4db9-8187-96d1d8e952b7",
+        "points_to_discount_star_rating_mpgfxL": {
+          "type": "shopify://apps/points-to-discount/blocks/star_rating/08b2a11f-3a11-4ab1-8091-f2f5164129c4",
           "settings": {
             "product": "",
             "colour": "#ff0000"
@@ -29,7 +29,7 @@
         }
       },
       "block_order": [
-        "discount_exchange_star_rating_hHtfYb"
+        "points_to_discount_star_rating_mpgfxL"
       ],
       "settings": {}
     }
@@ -37,6 +37,6 @@
   "order": [
     "template",
     "1740741891409df6fd",
-    "174074939044597518"
+    "17407558848233b351"
   ]
 }
