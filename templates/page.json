@@ -13,10 +13,10 @@
       "type": "template-page",
       "settings": {}
     },
-    "1740834862fb2d94ad": {
+    "1740835451a7fa8248": {
       "type": "apps",
       "blocks": {
-        "discount_exchange_star_rating_ALyzcY": {
+        "discount_exchange_star_rating_qBjjKE": {
           "type": "shopify://apps/discount-exchange/blocks/star_rating/535affa5-10ce-4db9-8187-96d1d8e952b7",
           "settings": {
             "product": "",
@@ -25,13 +25,13 @@
         }
       },
       "block_order": [
-        "discount_exchange_star_rating_ALyzcY"
+        "discount_exchange_star_rating_qBjjKE"
       ],
       "settings": {}
     }
   },
   "order": [
     "template",
-    "1740834862fb2d94ad"
+    "1740835451a7fa8248"
   ]
 }
