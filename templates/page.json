@@ -12,26 +12,9 @@
     "template": {
       "type": "template-page",
       "settings": {}
-    },
-    "1740851435dbe73b25": {
-      "type": "apps",
-      "blocks": {
-        "discount_exchange_star_rating_A8yVq3": {
-          "type": "shopify://apps/discount-exchange/blocks/star_rating/535affa5-10ce-4db9-8187-96d1d8e952b7",
-          "settings": {
-            "product": "",
-            "colour": "#ff0000"
-          }
-        }
-      },
-      "block_order": [
-        "discount_exchange_star_rating_A8yVq3"
-      ],
-      "settings": {}
     }
   },
   "order": [
-    "template",
-    "1740851435dbe73b25"
+    "template"
   ]
 }
