@@ -16,27 +16,10 @@
     "1740741891409df6fd": {
       "type": "apps",
       "settings": {}
-    },
-    "1740757037f75a39d1": {
-      "type": "apps",
-      "blocks": {
-        "points_to_discount_star_rating_3G6MAW": {
-          "type": "shopify://apps/points-to-discount/blocks/star_rating/08b2a11f-3a11-4ab1-8091-f2f5164129c4",
-          "settings": {
-            "product": "",
-            "colour": "#ff0000"
-          }
-        }
-      },
-      "block_order": [
-        "points_to_discount_star_rating_3G6MAW"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "template",
-    "1740741891409df6fd",
-    "1740757037f75a39d1"
+    "1740741891409df6fd"
   ]
 }
