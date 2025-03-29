@@ -16,7 +16,7 @@
           "type": "shopify://apps/discount-exchange/blocks/star_rating/15db1386-8f3e-4f82-a272-9ff062114d99",
           "settings": {
             "product": "",
-            "colour": "#ff0000"
+            "colour": "rgba(0,0,0,0)"
           }
         }
       },
